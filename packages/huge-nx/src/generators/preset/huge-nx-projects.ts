@@ -1,7 +1,13 @@
 import { Generator } from 'nx/src/config/misc-interfaces';
-import { applicationGenerator as angularApplicationGenerator } from '@nx/angular/generators';
+import {
+  applicationGenerator as angularApplicationGenerator,
+  libraryGenerator as angularLibraryGenerator,
+} from '@nx/angular/generators';
 import { GetOptions } from './generators-options/get-options.types';
-import { getAngularOptions } from './generators-options/angular';
+import {
+  getAngularApplicationOptions,
+  getAngularLibraryOptions,
+} from './generators-options/angular';
 
 export interface NxProjectGenerator<T = unknown> {
   generator: Generator<T>;
@@ -21,27 +27,68 @@ export type HugeNxWorkspace = {
   [key: string]: HugeNxWorkspace | NxProjectGenerator;
 };
 
+const teamApps: HugeNxWorkspace = {
+  'first-angular-app': {
+    generator: angularApplicationGenerator,
+    getOptions: getAngularApplicationOptions,
+  },
+  'second-angular-app': {
+    generator: angularApplicationGenerator,
+    getOptions: getAngularApplicationOptions,
+  },
+};
+
+const domainLibs: HugeNxWorkspace = {
+  api: {
+    generator: angularLibraryGenerator,
+    getOptions: getAngularLibraryOptions,
+  },
+  'data-access': {
+    generator: angularLibraryGenerator,
+    getOptions: getAngularLibraryOptions,
+  },
+  'first-feature': {
+    generator: angularLibraryGenerator,
+    getOptions: getAngularLibraryOptions,
+  },
+  'second-feature': {
+    generator: angularLibraryGenerator,
+    getOptions: getAngularLibraryOptions,
+  },
+};
+
+const teamAppLibs: HugeNxWorkspace = {
+  shell: {
+    generator: angularLibraryGenerator,
+    getOptions: getAngularLibraryOptions,
+  },
+  'first-domain': domainLibs,
+  'second-domain': domainLibs,
+  shared: {
+    'first-ui': {
+      generator: angularLibraryGenerator,
+      getOptions: getAngularLibraryOptions,
+    },
+    'first-util': {
+      generator: angularLibraryGenerator,
+      getOptions: getAngularLibraryOptions,
+    },
+  },
+};
+
 export const hugeNxWorkspace: HugeNxWorkspace = {
   apps: {
-    'team-one': {
-      'app-one': {
-        generator: angularApplicationGenerator,
-        getOptions: getAngularOptions,
-      },
-      'app-two': {
-        generator: angularApplicationGenerator,
-        getOptions: getAngularOptions,
-      },
+    'first-team': teamApps,
+    'second-team': teamApps,
+  },
+  libs: {
+    'first-team': {
+      'first-angular-app': teamAppLibs,
+      'second-angular-app': teamAppLibs,
     },
-    'team-two': {
-      'app-one': {
-        generator: angularApplicationGenerator,
-        getOptions: getAngularOptions,
-      },
-      'app-two': {
-        generator: angularApplicationGenerator,
-        getOptions: getAngularOptions,
-      },
+    'second-team': {
+      'first-angular-app': teamAppLibs,
+      'second-angular-app': teamAppLibs,
     },
   },
 };
