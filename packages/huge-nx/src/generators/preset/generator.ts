@@ -14,13 +14,20 @@ async function generateNxProjects(
   for (const [key, value] of Object.entries(nxWorkspace)) {
     // if a parent folder, call recursively
     if (!instanceOfNxProjectGenerator(value)) {
-      await generateNxProjects(value, tree, `${directory}/${key}`);
+      await generateNxProjects(
+        value,
+        tree,
+        directory ? `${directory}/${key}` : key
+      );
       continue;
     }
 
     // if a generator
     const { generator, getOptions } = value;
-    await generator(tree, getOptions({ name: key }));
+    await generator(
+      tree,
+      getOptions({ name: key, directory: `${directory}/${key}` })
+    );
   }
 }
 
