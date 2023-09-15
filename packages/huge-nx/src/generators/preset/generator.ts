@@ -1,4 +1,4 @@
-import { Tree } from '@nx/devkit';
+import { formatFiles, Tree } from '@nx/devkit';
 import { PresetGeneratorSchema } from './schema';
 import {
   HugeNxWorkspace,
@@ -11,7 +11,7 @@ async function generateNxProjects(
   tree: Tree,
   directory?: string
 ) {
-  for (const [key, value] of Object.entries(hugeNxWorkspace)) {
+  for (const [key, value] of Object.entries(nxWorkspace)) {
     // if a parent folder, call recursively
     if (!instanceOfNxProjectGenerator(value)) {
       await generateNxProjects(value, tree, `${directory}/${key}`);
@@ -30,7 +30,7 @@ export async function presetGenerator(
 ) {
   await generateNxProjects(hugeNxWorkspace, tree);
   // generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
-  // await formatFiles(tree);
+  await formatFiles(tree);
 }
 
 export default presetGenerator;
