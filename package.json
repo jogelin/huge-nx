@@ -6,7 +6,7 @@
     "nx": "nx",
     "unpublish-all": "pnpm unpublish create-huge-nx@1.0.0 --force & pnpm unpublish huge-nx@1.0.0 --force",
     "publish-all": "nx run-many -t publish --ver 1.0.0 --tag latest",
-    "generate-huge-nx": "pnpm unpublish-all && pnpm publish-all"
+    "generate-huge-nx": "rm -rf pnpm unpublish-all && pnpm publish-all"
   },
   "private": true,
   "dependencies": {
