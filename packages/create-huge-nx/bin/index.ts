@@ -18,7 +18,7 @@ async function main() {
   const { directory } = await createWorkspace(`huge-nx@${presetVersion}`, {
     name,
     nxCloud: false,
-    packageManager: 'npm',
+    packageManager: 'pnpm',
   });
 
   console.log(`Successfully created the workspace: ${directory}.`);

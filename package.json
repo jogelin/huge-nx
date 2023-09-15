@@ -2,7 +2,12 @@
   "name": "@huge-nx/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "nx": "nx",
+    "unpublish-all": "pnpm unpublish create-huge-nx@1.0.0 --force & pnpm unpublish huge-nx@1.0.0 --force",
+    "publish-all": "nx run-many -t publish --ver 1.0.0 --tag latest",
+    "generate-huge-nx": "pnpm unpublish-all && pnpm publish-all"
+  },
   "private": true,
   "dependencies": {
     "@nx/devkit": "16.8.1",
