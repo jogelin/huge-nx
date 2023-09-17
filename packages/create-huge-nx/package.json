@@ -2,7 +2,8 @@
   "name": "create-huge-nx",
   "version": "0.0.1",
   "dependencies": {
-    "create-nx-workspace": "16.8.1"
+    "create-nx-workspace": "16.8.1",
+    "@nx/angular": "^16.8.1"
   },
   "type": "commonjs",
   "main": "./src/index.js",

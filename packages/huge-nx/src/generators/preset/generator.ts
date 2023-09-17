@@ -9,14 +9,17 @@ import {
 async function generateNxProjects(
   nxWorkspace: HugeNxWorkspace,
   tree: Tree,
+  count = 0,
   directory?: string
-) {
+): Promise<number> {
+  let localCount = 0;
   for (const [key, value] of Object.entries(nxWorkspace)) {
     // if a parent folder, call recursively
     if (!instanceOfNxProjectGenerator(value)) {
-      await generateNxProjects(
+      count = await generateNxProjects(
         value,
         tree,
+        count,
         directory ? `${directory}/${key}` : key
       );
       continue;
@@ -24,20 +27,30 @@ async function generateNxProjects(
 
     // if a generator
     const { generator, getOptions } = value;
+
+    const dir = `${directory}/${key}`;
+    const name = dir.replace(/\//g, '-');
+    console.log(`- Generate ${name} in ${name}`);
     await generator(
       tree,
-      getOptions({ name: key, directory: `${directory}/${key}` })
+      getOptions({
+        name,
+        directory: dir,
+      })
     );
+    localCount++;
   }
+  return count + localCount;
 }
 
 export async function presetGenerator(
   tree: Tree,
   options: PresetGeneratorSchema
 ) {
-  await generateNxProjects(hugeNxWorkspace, tree);
+  const count = await generateNxProjects(hugeNxWorkspace, tree);
+  console.log(`- ${count} Generated`);
   // generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
-  await formatFiles(tree);
+  // await formatFiles(tree);
 }
 
 export default presetGenerator;
