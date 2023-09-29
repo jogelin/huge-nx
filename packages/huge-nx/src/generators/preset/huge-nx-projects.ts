@@ -8,6 +8,8 @@ import {
   getAngularApplicationOptions,
   getAngularLibraryOptions,
 } from './generators-options/angular';
+import { pluginGenerator } from '@nx/plugin/generators';
+import { getPluginOptions } from './generators-options/plugin';
 
 export interface NxProjectGenerator<T = unknown> {
   generator: Generator<T>;
@@ -28,11 +30,11 @@ export type HugeNxWorkspace = {
 };
 
 const teamApps: HugeNxWorkspace = {
-  'first-angular-app': {
+  'one-app': {
     generator: angularApplicationGenerator,
     getOptions: getAngularApplicationOptions,
   },
-  'second-angular-app': {
+  'two-app': {
     generator: angularApplicationGenerator,
     getOptions: getAngularApplicationOptions,
   },
@@ -47,13 +49,28 @@ const domainLibs: HugeNxWorkspace = {
     generator: angularLibraryGenerator,
     getOptions: getAngularLibraryOptions,
   },
-  'first-feature': {
+  'list-feature': {
     generator: angularLibraryGenerator,
     getOptions: getAngularLibraryOptions,
   },
-  'second-feature': {
+  'edit-feature': {
     generator: angularLibraryGenerator,
     getOptions: getAngularLibraryOptions,
+  },
+};
+
+const sharedLibs: HugeNxWorkspace = {
+  ui: {
+    generator: angularLibraryGenerator,
+    getOptions: getAngularLibraryOptions,
+  },
+  util: {
+    generator: angularLibraryGenerator,
+    getOptions: getAngularLibraryOptions,
+  },
+  'nx-plugin': {
+    generator: pluginGenerator,
+    getOptions: getPluginOptions,
   },
 };
 
@@ -62,18 +79,10 @@ const teamAppLibs: HugeNxWorkspace = {
     generator: angularLibraryGenerator,
     getOptions: getAngularLibraryOptions,
   },
-  'first-domain': domainLibs,
-  'second-domain': domainLibs,
-  shared: {
-    'first-ui': {
-      generator: angularLibraryGenerator,
-      getOptions: getAngularLibraryOptions,
-    },
-    'first-util': {
-      generator: angularLibraryGenerator,
-      getOptions: getAngularLibraryOptions,
-    },
-  },
+  'foo-domain': domainLibs,
+  'bar-domain': domainLibs,
+
+  shared: sharedLibs,
 };
 
 export const hugeNxWorkspace: HugeNxWorkspace = {
@@ -83,12 +92,13 @@ export const hugeNxWorkspace: HugeNxWorkspace = {
   },
   libs: {
     'first-team': {
-      'first-angular-app': teamAppLibs,
-      'second-angular-app': teamAppLibs,
+      'one-app': teamAppLibs,
+      'two-app': teamAppLibs,
     },
     'second-team': {
-      'first-angular-app': teamAppLibs,
-      'second-angular-app': teamAppLibs,
+      'one-app': teamAppLibs,
+      'two-app': teamAppLibs,
     },
+    shared: sharedLibs,
   },
 };

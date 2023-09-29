@@ -29,7 +29,7 @@ async function generateNxProjects(
     const { generator, getOptions } = value;
 
     const dir = `${directory}/${key}`;
-    const name = dir.replace(/\//g, '-');
+    const name = dir.replace(/\//g, '-').split('-').slice(1).join('-');
     console.log(`- Generate ${name} in ${name}`);
     await generator(
       tree,
@@ -49,8 +49,8 @@ export async function presetGenerator(
 ) {
   const count = await generateNxProjects(hugeNxWorkspace, tree);
   console.log(`- ${count} Generated`);
-  // generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
-  // await formatFiles(tree);
+
+  await formatFiles(tree);
 }
 
 export default presetGenerator;

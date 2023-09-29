@@ -1,6 +1,5 @@
 import { Schema as AngularApplicationGeneratorSchema } from '@nx/angular/src/generators/application/schema';
 import { Schema as AngularLibraryGeneratorSchema } from '@nx/angular/src/generators/library/schema';
-import { join } from 'path';
 import { Linter } from '@nx/linter';
 import { GetOptions } from './get-options.types';
 
