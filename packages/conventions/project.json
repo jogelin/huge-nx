@@ -21,7 +21,7 @@
         "main": "packages/conventions/src/index.ts",
         "tsConfig": "packages/conventions/tsconfig.lib.json",
         "assets": [
-          "packages/conventions/*.md",
+          "README.md",
           {
             "input": "./packages/conventions/src",
             "glob": "**/!(*.ts)",

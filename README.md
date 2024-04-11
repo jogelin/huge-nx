@@ -1,10 +1,14 @@
 # Huge<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-### Do you often generate a new Nx workspace from scratch to compare the configuration files with your existing workspace?
+[![CI](https://github.com/jogelin/huge-nx/actions/workflows/ci.yml/badge.svg)](https://github.com/jogelin/huge-nx/actions/workflows/ci.yml)
 
-HugeNx is a [custom preset](https://nx.dev/extending-nx/recipes/create-preset) used to dynamically generate a new Nx workspace from a conventions file.
+## Do you frequently create new Nx workspaces to check configs against yours?
 
+HugeNx is a [custom preset](https://nx.dev/extending-nx/recipes/create-preset) used to dynamically generate a new Nx workspace from your workspace conventions.
+
+<!--- 
 > TODO: More infos in my article:<br>[👥 Reproducible Nx Workspace with Dynamic huge-nx Preset]()
+--> 
 
 ## Getting Started
 

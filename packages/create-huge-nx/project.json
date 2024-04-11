@@ -11,7 +11,7 @@
         "outputPath": "dist/packages/create-huge-nx",
         "main": "packages/create-huge-nx/bin/index.ts",
         "tsConfig": "packages/create-huge-nx/tsconfig.lib.json",
-        "assets": ["packages/create-huge-nx/*.md"]
+        "assets": ["README.md"]
       }
     },
     "nx-release-publish": {
