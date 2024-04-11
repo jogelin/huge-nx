@@ -39,5 +39,5 @@
       }
     }
   },
-  "implicitDependencies": ["huge-nx"]
+  "implicitDependencies": ["conventions"]
 }

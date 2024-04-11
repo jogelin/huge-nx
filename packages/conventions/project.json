@@ -1,35 +1,44 @@
 {
-  "name": "huge-nx",
+  "name": "conventions",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/huge-nx/src",
+  "sourceRoot": "packages/conventions/src",
   "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/huge-nx",
-        "main": "packages/huge-nx/src/index.ts",
-        "tsConfig": "packages/huge-nx/tsconfig.lib.json",
+        "outputPath": "dist/packages/conventions",
+        "main": "packages/conventions/src/index.ts",
+        "tsConfig": "packages/conventions/tsconfig.lib.json",
         "assets": [
-          "packages/huge-nx/*.md",
+          "packages/conventions/*.md",
           {
-            "input": "./packages/huge-nx/src",
+            "input": "./packages/conventions/src",
             "glob": "**/!(*.ts)",
             "output": "./src"
           },
           {
-            "input": "./packages/huge-nx/src",
+            "input": "./packages/conventions/src",
             "glob": "**/*.d.ts",
             "output": "./src"
           },
           {
-            "input": "./packages/huge-nx",
+            "input": "./packages/conventions",
             "glob": "generators.json",
             "output": "."
           },
           {
-            "input": "./packages/huge-nx",
+            "input": "./packages/conventions",
             "glob": "executors.json",
             "output": "."
           }
@@ -48,16 +57,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/huge-nx/jest.config.ts"
-      }
-    }
-  },
-  "tags": [],
-  "release": {
-    "version": {
-      "generatorOptions": {
-        "packageRoot": "dist/{projectRoot}",
-        "currentVersionResolver": "git-tag"
+        "jestConfig": "packages/conventions/jest.config.ts"
       }
     }
   }

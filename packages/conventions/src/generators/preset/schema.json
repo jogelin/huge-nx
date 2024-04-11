@@ -6,13 +6,18 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "",
+      "description": "Name of you workspace",
       "$default": {
         "$source": "argv",
         "index": 0
       },
       "x-prompt": "What name would you like to use?"
+    },
+    "hugeNxConventions": {
+      "type": "string",
+      "description": "Path to the huge nx convention file",
+      "x-prompt": "Where is located your huge nx convention file?"
     }
   },
-  "required": ["name"]
+  "required": ["name", "hugeNxConventions"]
 }
