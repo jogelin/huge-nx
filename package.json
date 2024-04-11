@@ -8,6 +8,10 @@
     "create:nx-preset-react-monorepo": "npx ts-node ./tools/scripts/publish-local.ts  ./huge-nx/packages/conventions/src/examples/nx-preset-react-monorepo.conventions.ts"
   },
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jogelin/huge-nx"
+  },
   "dependencies": {
     "@nx/devkit": "18.2.2",
     "create-nx-workspace": "18.1.2",
