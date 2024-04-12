@@ -193,6 +193,7 @@ export default {
 ## Examples:
 
 ### Simple Presets
+
 - **[Nx Angular Monorepo Preset](https://github.com/jogelin/huge-nx/blob/1303c113c93e7dc2888a2f89b36fc8e36ebc1073/packages/conventions/src/examples/nx-preset-angular-monorepo.conventions.ts)**
 
 - **[Nx React Monorepo Preset](https://github.com/jogelin/huge-nx/blob/1303c113c93e7dc2888a2f89b36fc8e36ebc1073/packages/conventions/src/examples/nx-preset-react-monorepo.conventions.ts)**
@@ -200,8 +201,6 @@ export default {
 ### Advanced
 
 - **[Huge Angular Monorepo](https://github.com/jogelin/huge-nx/blob/1303c113c93e7dc2888a2f89b36fc8e36ebc1073/packages/conventions/src/examples/huge-angular-monorepo.conventions.ts)**
-
-
 
 ## Open Doors:
 
