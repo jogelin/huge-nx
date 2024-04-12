@@ -41,7 +41,7 @@ export default {
 ### 2. Use [create-huge-nx](https://www.npmjs.com/package/create-huge-nx) client to generate a new Nx workspace from your HugeNx's conventions:
 
 ```bash
-npx create-huge-nx@latest my-workspace --hugeNxConventions=./huge-nx.conventions.ts --nxCloud skip
+npx create-huge-nx@latest my-workspace --hugeNxConventions=./angular-monorepo.conventions.ts --nxCloud skip
 ```
 
 This will generate a new workspace with the following structure:
@@ -57,13 +57,17 @@ my-workspace/
 └── huge-nx.conventions.ts
 ```
 
+## How it works?
+
+[TODO]
+
 ## HugeNx's Conventions
 
-The idea behind the HugeNx's Conventions is to group into a single file, all informations needed to generate and maintain a complex Nx workspace that match your conventionnal decisions.
+The idea behind the **HugeNx's Conventions** is to group into a single file all the information needed to generate and maintain a complex Nx workspace that matches your conventional decisions.
 
 ### Default Generator Options
 
-The goal is to define global options related to a specific generator. Equivalent of your configurations in your [nx.json](https://nx.dev/reference/nx-json#generators).
+The goal is to define global options related to a specific generator, equivalent to your configurations in you [nx.json](https://nx.dev/reference/nx-json#generators).
 
 For example:
 
