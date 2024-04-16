@@ -5,6 +5,7 @@
   "scripts": {
     "create:huge-angular-monorepo": "npx ts-node ./tools/scripts/publish-local.ts ./huge-nx/packages/conventions/src/examples/huge-angular-monorepo.conventions.ts",
     "create:nx-preset-angular-monorepo": "npx ts-node ./tools/scripts/publish-local.ts  ./huge-nx/packages/conventions/src/examples/nx-preset-angular-monorepo.conventions.ts",
+    "create:nx-preset-angular-monorepo-v17": "npx ts-node ./tools/scripts/publish-local.ts  ./huge-nx/packages/conventions/src/examples/nx-preset-angular-monorepo.conventions.ts 17",
     "create:nx-preset-react-monorepo": "npx ts-node ./tools/scripts/publish-local.ts  ./huge-nx/packages/conventions/src/examples/nx-preset-react-monorepo.conventions.ts"
   },
   "private": true,
@@ -12,12 +13,10 @@
     "type": "git",
     "url": "https://github.com/jogelin/huge-nx"
   },
-  "dependencies": {
+  "devDependencies": {
     "@nx/devkit": "18.2.2",
     "create-nx-workspace": "18.1.2",
-    "tslib": "^2.3.0"
-  },
-  "devDependencies": {
+    "tslib": "^2.3.0",
     "@angular-devkit/core": "~17.2.0",
     "@nx/angular": "18.2.2",
     "@nx/eslint": "18.2.2",
@@ -25,6 +24,8 @@
     "@nx/jest": "18.2.2",
     "@nx/js": "18.2.2",
     "@nx/plugin": "18.2.2",
+    "@nx/vite": "18.2.2",
+    "@nx/web": "18.2.2",
     "@nx/workspace": "18.2.2",
     "@swc-node/register": "~1.8.0",
     "@swc/cli": "~0.1.62",
@@ -32,8 +33,11 @@
     "@swc/helpers": "~0.5.2",
     "@types/jest": "^29.4.0",
     "@types/node": "18.16.9",
+    "@types/tmp": "^0.2.6",
     "@typescript-eslint/eslint-plugin": "7.5.0",
     "@typescript-eslint/parser": "7.5.0",
+    "@vitest/coverage-v8": "^1.0.4",
+    "@vitest/ui": "^1.3.1",
     "chalk": "^4.1.2",
     "enquirer": "^2.4.1",
     "eslint": "8.57.0",
@@ -42,14 +46,16 @@
     "jest-environment-jsdom": "^29.4.1",
     "nx": "18.2.2",
     "prettier": "^2.6.2",
+    "tmp": "^0.2.3",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "5.4.4",
     "verdaccio": "^5.0.4",
+    "vite": "~5.0.0",
+    "vitest": "^1.3.1",
     "yargs": "^17.7.2"
   },
   "nx": {
     "includedScripts": []
   }
 }
-

@@ -1,32 +1,34 @@
-import { addDependenciesToPackageJson, ensurePackage, formatFiles, installPackagesTask, Tree } from '@nx/devkit';
+import { addDependenciesToPackageJson, formatFiles, Tree } from '@nx/devkit';
 import { PresetGeneratorSchema } from './schema';
 import { loadConventions } from '../../utils/load-conventions';
-import { HugeNxConventions, HugeNxNodeGenerator, HugeNxWorkspace, instanceOfHugeNxNodeWithExtraOptions } from '../../types/huge-nx-conventions';
+import {
+  GeneratorOptions,
+  HugeNxConventions,
+  HugeNxNodeGenerator,
+  HugeNxWorkspace,
+  instanceOfHugeNxNodeWithExtraOptions,
+} from '../../types/huge-nx-conventions';
 import { join, resolve } from 'node:path';
 import { execSync } from 'node:child_process';
-import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
-import { addHandler } from 'nx/src/command-line/add/add';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { logger } from '../../utils/logger';
-import { nxVersion } from 'nx/src/utils/versions';
-import { hugeNxVersion } from '../../utils/versions';
+import { hugeNxVersion, objectToInlineArgs } from '@huge-nx/devkit';
+import { detectPackageManager, getPackageManagerCommand, PackageManagerCommands } from 'nx/src/utils/package-manager';
 
 const hugeNxConventionsPath = 'huge-nx.conventions.ts';
 const installedPlugins: Map<string, boolean> = new Map();
 
-async function runGenerator(generator: string, options: Record<string, unknown>) {
+async function runGenerator(generator: string, options: GeneratorOptions, pmc: PackageManagerCommands) {
   // Ensure generator plugin is installed
   const plugin = generator.split(':')[0];
   if (!installedPlugins.has(plugin)) {
-    await addHandler({ packageSpecifier: plugin });
+    const cmd = `${pmc.exec} nx add ${plugin} --no-interactive`;
+    logger.info(cmd);
+    execSync(cmd, { stdio: 'inherit' });
     installedPlugins.set(plugin, true);
   }
 
-  // Convert Options to inline
-  const inlineOptions = Object.entries(options)
-    .map(([key, value]) => `--${key}=${value}`)
-    .join(' ');
-
-  const cmd = `npx nx g ${generator} ${inlineOptions} --no-interactive`;
+  const cmd = `${pmc.exec} nx g ${generator} ${objectToInlineArgs(options)} --no-interactive`;
   logger.info(cmd);
   execSync(cmd, { stdio: 'inherit' });
 }
@@ -56,6 +58,9 @@ async function generateWorkspaceNodes(
 
     const nodeOptionsByGenerator = instanceOfHugeNxNodeWithExtraOptions(nodeValue) ? nodeValue.options : {};
 
+    const packageManager = detectPackageManager();
+    const pmc = getPackageManagerCommand(packageManager);
+
     // execute all generators sequentially
     for (const { generator, options } of generators) {
       const dir = `${directory}/${nodeName}`;
@@ -75,7 +80,7 @@ async function generateWorkspaceNodes(
         ...directoryOptions,
       };
 
-      await runGenerator(generator, allOptions);
+      await runGenerator(generator, allOptions, pmc);
     }
   }
 }
@@ -89,12 +94,7 @@ export async function presetGenerator(tree: Tree, options: PresetGeneratorSchema
 
   logger.info(`Copy conventions file ${options.hugeNxConventions} to ${hugeNxConventionsDest}`);
 
-  // Update file located at hugeNxConventionsDest with nx version
-  const conventionsFileStr = readFileSync(hugeNxConventionsSource, { encoding: 'utf8' }).replace(
-    /( +)version: '1.0',/,
-    `$1version: '1.0',\n$1nxVersion: '${nxVersion}',`
-  );
-
+  const conventionsFileStr = readFileSync(hugeNxConventionsSource, { encoding: 'utf8' });
   writeFileSync(hugeNxConventionsDest, conventionsFileStr, { encoding: 'utf8' });
 
   const hugeNxConventions = await loadConventions(hugeNxConventionsDest);

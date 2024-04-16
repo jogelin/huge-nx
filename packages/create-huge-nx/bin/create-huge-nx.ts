@@ -1,17 +1,19 @@
 import * as enquirer from 'enquirer';
 import * as yargs from 'yargs';
 
-import { CreateWorkspaceOptions, createWorkspace } from 'create-nx-workspace';
+import type { CreateWorkspaceOptions } from 'create-nx-workspace';
 import { CLIErrorMessageConfig, output } from 'create-nx-workspace/src/utils/output';
-import { printNxCloudSuccessMessage } from 'create-nx-workspace/src/utils/nx/nx-cloud';
 import { determineDefaultBase, determineNxCloud, determinePackageManager } from 'create-nx-workspace/src/internal-utils/prompts';
 import { withAllPrompts, withGitOptions, withNxCloud, withOptions, withPackageManager } from 'create-nx-workspace/src/internal-utils/yargs-options';
 import { showNxWarning } from 'create-nx-workspace/src/utils/nx/show-nx-warning';
-import { existsSync } from 'fs';
+import { existsSync } from 'node:fs';
 import * as chalk from 'chalk';
+import { execSync } from 'node:child_process';
+import { hugeNxVersion } from '@huge-nx/devkit';
 
 interface Arguments extends CreateWorkspaceOptions {
   hugeNxConventions: string;
+  nxVersion: string;
 }
 
 export const commandsObject: yargs.Argv<Arguments> = yargs
@@ -33,6 +35,11 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
           })
           .option('hugeNxConventions', {
             describe: chalk.dim`Path to the Huge Nx Convention file (e.g. ./huge-nx.conventions.json)`,
+            type: 'string',
+          })
+          .option('nxVersion', {
+            describe: chalk.dim`Nx version to use in the new workspace`,
+            default: 'latest',
             type: 'string',
           }),
         withNxCloud,
@@ -63,19 +70,18 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
 
 async function main(parsedArgs: yargs.Arguments<Arguments>) {
   output.log({
-    title: `Creating your Huge Nx workspace.`,
+    title: `Creating your Huge Nx workspace with Nx ${parsedArgs.nxVersion} and preset @huge-nx/conventions@${hugeNxVersion}`,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const presetVersion = require('../package.json').version;
-
-  const workspaceInfo = await createWorkspace<Arguments>(`@huge-nx/conventions@${presetVersion}`, parsedArgs);
+  const createNxWorkspaceCmd = `npx --yes create-nx-workspace@${parsedArgs.nxVersion} --preset "@huge-nx/conventions@${hugeNxVersion}" ${getInlineArgv(
+    parsedArgs
+  )} --no-interactive`;
+  output.log({
+    title: createNxWorkspaceCmd,
+  });
+  execSync(createNxWorkspaceCmd, { stdio: 'inherit' });
 
   showNxWarning(parsedArgs.name);
-
-  if (parsedArgs.nxCloud && workspaceInfo.nxCloudInfo) {
-    printNxCloudSuccessMessage(workspaceInfo.nxCloudInfo);
-  }
 
   output.log({
     title: `Successfully applied preset: ${parsedArgs.preset}`,
@@ -108,6 +114,37 @@ async function normalizeArgsMiddleware(argv: yargs.Arguments<Arguments>): Promis
     console.error(e);
     process.exit(1);
   }
+}
+
+function getInlineArgv(argv: yargs.Arguments<Arguments>): string {
+  const createNxArgsKeys: (keyof Arguments)[] = [
+    'name',
+    'hugeNxConventions',
+    'nxVersion',
+    'packageManager',
+    'defaultBase',
+    'nxCloud',
+    // 'interactive',
+    // 'skipGit',
+    // 'commit',
+    // 'cliName',
+  ];
+
+  const filteredArgv = Object.keys(argv).reduce(
+    (acc, key) => ({
+      ...acc,
+      ...(createNxArgsKeys.includes(key as keyof Arguments) && { [key]: argv[key] }),
+    }),
+    {}
+  ) as Arguments;
+
+  //tranform filteredArgv to inline arguments
+  return Object.entries(filteredArgv).reduce((acc, [key, value]) => {
+    if (typeof value === 'boolean') {
+      return acc + (value ? ` --${key}` : '');
+    }
+    return acc + ` --${key}=${value}`;
+  }, '');
 }
 
 function invariant<T = string | number | boolean>(predicate: T, message: CLIErrorMessageConfig): asserts predicate is NonNullable<T> {

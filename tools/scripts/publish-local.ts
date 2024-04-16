@@ -10,6 +10,7 @@ const localRegistryTarget = '@huge-nx/source:local-registry';
 let stopLocalRegistry = () => {};
 
 const hugeNxConventionsArgv = process.argv[2];
+const nxVersion = process.argv[3] ?? 'latest';
 const workspaceName = hugeNxConventionsArgv.split('/')?.pop()?.replace('.conventions.ts', '');
 if (!hugeNxConventionsArgv || !workspaceName) {
   throw new Error(
@@ -49,10 +50,18 @@ if (!hugeNxConventionsArgv || !workspaceName) {
 
   rmSync(workspaceName, { force: true, recursive: true });
 
-  const createCmd = `npm_config_registry=http://localhost:4873 npx create-huge-nx@latest ${workspaceName} --hugeNxConventions=${hugeNxConventionsArgv} --nxCloud skip --verbose`;
+  const createCmd = `npx --yes create-huge-nx@latest ${workspaceName}-${nxVersion} --hugeNxConventions=${hugeNxConventionsArgv} --nxVersion ${nxVersion} --nxCloud skip --verbose`;
+
   console.log(createCmd);
+
   execSync(createCmd, {
     stdio: 'inherit',
+    env: {
+      ...process.env,
+      npm_config_registry: 'http://localhost:4873',
+      NX_DAEMON: 'false',
+      NX_SKIP_NX_CACHE: 'false',
+    },
   });
 
   stopLocalRegistry();

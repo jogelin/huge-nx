@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@huge-nx/conventions": ["packages/conventions/src/index.ts"]
+      "@huge-nx/conventions": ["packages/conventions/src/index.ts"],
+      "@huge-nx/devkit": ["packages/devkit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

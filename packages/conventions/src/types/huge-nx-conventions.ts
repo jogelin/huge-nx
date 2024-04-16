@@ -1,13 +1,15 @@
+export type GeneratorOptions = Record<string, string | boolean | number>;
+
 export type HugeNxNodeGenerator = {
   generator: string;
-  options?: Partial<object>;
+  options?: GeneratorOptions;
 };
 
 export type HugeNxNodeType = { projectPattern: string; generators: HugeNxNodeGenerator[] };
 
 export type HugeNxProjectTypes = Record<string, HugeNxNodeType>;
 
-export type OptionsByGenerator = { [generatorName: string]: Partial<object> };
+export type OptionsByGenerator = { [generatorName: string]: GeneratorOptions };
 
 export type HugeNxNodeWithExtraOptions = {
   projectType: keyof HugeNxProjectTypes;

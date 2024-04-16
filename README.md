@@ -44,6 +44,12 @@ export default {
 npx create-huge-nx@latest my-workspace --hugeNxConventions=./angular-monorepo.conventions.ts --nxCloud skip
 ```
 
+You can generate a workspace with a specific Nx version with `--nxVersion`:
+
+```bash
+npx create-huge-nx@latest my-workspace --hugeNxConventions=./angular-monorepo.conventions.ts --nxVersion 17 --nxCloud skip
+```
+
 This will generate a new workspace with the following structure:
 
 ```
@@ -56,6 +62,8 @@ my-workspace/
 ├── ...
 └── huge-nx.conventions.ts
 ```
+
+`create-huge-nx` accepts all default parameters from the original [create-nx-workspace](https://nx.dev/nx-api/nx/documents/create-nx-workspace).
 
 ## How it works?
 
