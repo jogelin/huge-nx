@@ -1,6 +1,5 @@
 ## 0.4.0 (2024-04-16)
 
-
 ### 🚀 Features
 
 - **create-huge-nx:** Allow to generate workspace with a specific Nx Version ([367ec0b](https://github.com/jogelin/huge-nx/commit/367ec0b))
@@ -11,7 +10,7 @@
 - **prettier:** Ignore pnpm-lock.yaml ([128414c](https://github.com/jogelin/huge-nx/commit/128414c))
 - **release:** Fix removing correct workspace folder for test ([ccbd124](https://github.com/jogelin/huge-nx/commit/ccbd124))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Jonathan Gelin @jogelin
 
