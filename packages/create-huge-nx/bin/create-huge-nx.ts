@@ -51,9 +51,8 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
     async function handler(argv: yargs.ArgumentsCamelCase<Arguments>) {
       await main(argv).catch((error) => {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const { version } = require('../package.json');
         output.error({
-          title: `Something went wrong! v${version}`,
+          title: `Something went wrong! v${hugeNxVersion}`,
         });
         throw error;
       });
@@ -69,18 +68,16 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
   ) as yargs.Argv<Arguments>;
 
 async function main(parsedArgs: yargs.Arguments<Arguments>) {
-  output.log({
-    title: `Creating your Huge Nx workspace with Nx ${parsedArgs.nxVersion} and preset @huge-nx/conventions@${hugeNxVersion}`,
-  });
-
   const createNxWorkspaceCmd = `npx --yes create-nx-workspace@${parsedArgs.nxVersion} --preset "@huge-nx/conventions@${hugeNxVersion}" ${getInlineArgv(
     parsedArgs
   )} --no-interactive`;
-  output.log({
-    title: createNxWorkspaceCmd,
-  });
-  execSync(createNxWorkspaceCmd, { stdio: 'inherit' });
 
+  output.log({
+    title: `Creating your Huge Nx workspace with Nx ${parsedArgs.nxVersion} and preset @huge-nx/conventions@${hugeNxVersion}`,
+    bodyLines: [createNxWorkspaceCmd],
+  });
+
+  execSync(createNxWorkspaceCmd, { stdio: 'inherit' });
   showNxWarning(parsedArgs.name);
 
   output.log({
@@ -111,7 +108,9 @@ async function normalizeArgsMiddleware(argv: yargs.Arguments<Arguments>): Promis
       defaultBase,
     });
   } catch (e) {
+    output.error({ title: `Cannot Normalize Arguments` });
     console.error(e);
+
     process.exit(1);
   }
 }

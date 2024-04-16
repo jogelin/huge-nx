@@ -2,16 +2,19 @@ import * as ts from 'typescript';
 
 import { readFileSync } from 'node:fs';
 import { HugeNxConventions } from '../types/huge-nx-conventions';
-import { addHandler } from 'nx/src/command-line/add/add';
-import { logger } from './logger';
+import { output } from 'create-nx-workspace/src/utils/output';
+import { installNxPlugin } from './nx-plugins';
+import { PackageManagerCommands } from 'nx/src/utils/package-manager';
 
-export async function loadConventions(hugeNxConventionsPath: string): Promise<HugeNxConventions> {
-  logger.info(`Loading conventions from ${hugeNxConventionsPath}`);
+export async function loadConventions(hugeNxConventionsPath: string, pmc: PackageManagerCommands): Promise<HugeNxConventions> {
+  output.log({
+    title: `Loading conventions from ${hugeNxConventionsPath}`,
+  });
 
   const sourceFile = ts.createSourceFile(hugeNxConventionsPath, readFileSync(hugeNxConventionsPath, { encoding: 'utf8' }), ts.ScriptTarget.Latest);
 
   const imports = parseTsImports(sourceFile);
-  await installPackages(imports);
+  await installPackages(imports, pmc);
 
   const { outputText } = ts.transpileModule(sourceFile.text, {
     compilerOptions: { module: ts.ModuleKind.NodeNext },
@@ -19,16 +22,16 @@ export async function loadConventions(hugeNxConventionsPath: string): Promise<Hu
   return eval(outputText) as HugeNxConventions;
 }
 
-async function installPackages(imports: string[]) {
+async function installPackages(imports: string[], pmc: PackageManagerCommands) {
   // TODO : should install the package with the correct version so we should read the package.json where the ts file is located
   // TODO : then that approach should be also used to read the tsconfig
   // const npmPackages = imports.filter((imp) => !imp.startsWith('.') && !imp.startsWith('huge-nx') && !imp.startsWith('@nx/'));
   // npmPackages.forEach((pkg) => ensurePackage(pkg, ''));
 
   const nxPlugins = imports.filter((imp) => imp.startsWith('@nx/'));
+
   for (const nxPlugin of nxPlugins) {
-    console.log(`Add Nx Plugin ${nxPlugin}`);
-    await addHandler({ packageSpecifier: nxPlugin });
+    installNxPlugin(nxPlugin, pmc);
   }
 }
 
