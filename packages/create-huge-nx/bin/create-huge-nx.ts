@@ -54,6 +54,7 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
         output.error({
           title: `Something went wrong! v${hugeNxVersion}`,
         });
+        console.error(error);
         throw error;
       });
     },
@@ -137,7 +138,7 @@ function getInlineArgv(argv: yargs.Arguments<Arguments>): string {
     {}
   ) as Arguments;
 
-  //tranform filteredArgv to inline arguments
+  //transform filteredArgv to inline arguments
   return Object.entries(filteredArgv).reduce((acc, [key, value]) => {
     if (typeof value === 'boolean') {
       return acc + (value ? ` --${key}` : '');

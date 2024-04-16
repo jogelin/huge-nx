@@ -11,7 +11,7 @@ let stopLocalRegistry = () => {};
 
 const hugeNxConventionsArgv = process.argv[2];
 const nxVersion = process.argv[3] ?? 'latest';
-const workspaceName = hugeNxConventionsArgv.split('/')?.pop()?.replace('.conventions.ts', '');
+const workspaceName = hugeNxConventionsArgv.split('/')?.pop()?.replace('.conventions.ts', `-${nxVersion}`);
 if (!hugeNxConventionsArgv || !workspaceName) {
   throw new Error(
     'Provide the conventions file path like npx ts-node ./tools/scripts/publish-local.ts ./huge-nx/packages/conventions/src/examples/huge-angular-monorepo.conventions.ts'
@@ -50,7 +50,7 @@ if (!hugeNxConventionsArgv || !workspaceName) {
 
   rmSync(workspaceName, { force: true, recursive: true });
 
-  const createCmd = `npx --yes create-huge-nx@latest ${workspaceName}-${nxVersion} --hugeNxConventions=${hugeNxConventionsArgv} --nxVersion ${nxVersion} --nxCloud skip --verbose`;
+  const createCmd = `npx --yes create-huge-nx@latest ${workspaceName} --hugeNxConventions=${hugeNxConventionsArgv} --nxVersion ${nxVersion} --nxCloud skip --verbose`;
 
   console.log(createCmd);
 
