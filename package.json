@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create:huge-angular-monorepo": "npx ts-node ./tools/scripts/publish-local.ts ./huge-nx/packages/conventions/src/examples/huge-angular-monorepo.conventions.ts",
+    "create:huge-angular-mf": "npx ts-node ./tools/scripts/publish-local.ts ./huge-nx/packages/conventions/src/examples/huge-angular-mf.conventions.ts",
+    "create:huge-angular-full-stack": "npx ts-node ./tools/scripts/publish-local.ts ./huge-nx/packages/conventions/src/examples/huge-angular-full-stack.conventions.ts",
     "create:nx-preset-angular-monorepo": "npx ts-node ./tools/scripts/publish-local.ts  ./huge-nx/packages/conventions/src/examples/nx-preset-angular-monorepo.conventions.ts",
     "create:nx-preset-angular-monorepo-v17": "npx ts-node ./tools/scripts/publish-local.ts  ./huge-nx/packages/conventions/src/examples/nx-preset-angular-monorepo.conventions.ts 17",
     "create:nx-preset-react-monorepo": "npx ts-node ./tools/scripts/publish-local.ts  ./huge-nx/packages/conventions/src/examples/nx-preset-react-monorepo.conventions.ts"
