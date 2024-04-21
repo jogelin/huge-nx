@@ -209,7 +209,7 @@ export default {
 ### Advanced
 
 - **[Huge Angular Full Stack](https://github.com/jogelin/huge-nx/blob/1303c113c93e7dc2888a2f89b36fc8e36ebc1073/packages/conventions/src/examples/huge-angular-full-stack.conventions.ts)**
-- 
+
 - **[Huge Angular MF](https://github.com/jogelin/huge-nx/blob/1303c113c93e7dc2888a2f89b36fc8e36ebc1073/packages/conventions/src/examples/huge-angular-mf.conventions.ts)**
 
 ## Open Doors:
@@ -257,6 +257,7 @@ pnpm install
   ```
 
 - **[Huge Angular MF](https://github.com/jogelin/huge-nx/blob/1303c113c93e7dc2888a2f89b36fc8e36ebc1073/packages/conventions/src/examples/huge-angular-mf.conventions.ts):**
+
   ```bash
   pnpm run create:huge-angular-mf
   ```
@@ -265,5 +266,5 @@ pnpm install
   ```bash
   pnpm run create:huge-angular-full-stack
   ```
-  
+
 These scripts use the `tools/publish-local.ts` script to start Verdaccio, build the libraries, publish them with a unique version, and create a new Nx Workspace based on the convention file name one level above.
