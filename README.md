@@ -6,9 +6,7 @@
 
 **HugeNx** is a [custom preset](https://nx.dev/extending-nx/recipes/create-preset) used to dynamically generate a new [Nx workspace](https://nx.dev/) from your specific workspace conventions.
 
-<!---
-> TODO: More infos in my article:<br>[👥 Reproducible Nx Workspace with Dynamic huge-nx Preset]()
--->
+[![Article](./doc/images/article.png)](https://jgelin.medium.com/reproducible-nx-workspace-with-hugenxs-conventions-a247c0541049)
 
 ## Getting Started
 
@@ -64,10 +62,6 @@ my-workspace/
 ```
 
 `create-huge-nx` accepts all default parameters from the original [create-nx-workspace](https://nx.dev/nx-api/nx/documents/create-nx-workspace).
-
-## How it works?
-
-[TODO]
 
 ## HugeNx's Conventions
 
