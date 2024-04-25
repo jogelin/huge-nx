@@ -2,6 +2,10 @@
   "name": "@huge-nx/devkit",
   "version": "0.0.1",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jogelin/huge-nx"
+  },
   "dependencies": {
     "@swc/helpers": "~0.5.2"
   },
