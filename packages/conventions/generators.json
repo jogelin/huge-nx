@@ -5,6 +5,11 @@
       "schema": "./src/generators/preset/schema.json",
       "description": "preset generator",
       "x-use-standalone-layout": true
+    },
+    "project-type": {
+      "factory": "./src/generators/project-type/generator",
+      "schema": "./src/generators/project-type/schema.json",
+      "description": "project-type generator"
     }
   }
 }

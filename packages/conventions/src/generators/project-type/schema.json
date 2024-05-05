@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "ProjectType",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "projectType": {
+      "type": "string",
+      "description": "A ProjectType specified in your conventions file",
+      "x-prompt": "What ProjectType from your huge-nx-convention.ts file would you like to use?",
+      "x-priority": "important"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory where the lib is placed.",
+      "x-prompt": "In which directory?",
+      "x-priority": "important"
+    }
+  },
+  "required": ["name", "projectType", "directory"]
+}

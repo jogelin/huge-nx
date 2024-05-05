@@ -5,8 +5,11 @@ import { HugeNxConventions } from '../types/huge-nx-conventions';
 import { output } from 'create-nx-workspace/src/utils/output';
 import { installNxPlugin } from './nx-plugins';
 import { PackageManagerCommands } from 'nx/src/utils/package-manager';
+import { join } from 'node:path';
 
-export async function loadConventions(hugeNxConventionsPath: string, pmc: PackageManagerCommands): Promise<HugeNxConventions> {
+export const hugeNxConventionsFileName = 'huge-nx.conventions.ts';
+
+export async function loadConventions(hugeNxConventionsPath: string): Promise<HugeNxConventions> {
   output.log({
     title: `Loading conventions from ${hugeNxConventionsPath}`,
   });
@@ -14,7 +17,7 @@ export async function loadConventions(hugeNxConventionsPath: string, pmc: Packag
   const sourceFile = ts.createSourceFile(hugeNxConventionsPath, readFileSync(hugeNxConventionsPath, { encoding: 'utf8' }), ts.ScriptTarget.Latest);
 
   const imports = parseTsImports(sourceFile);
-  await installPackages(imports, pmc);
+  await installPackages(imports);
 
   const { outputText } = ts.transpileModule(sourceFile.text, {
     compilerOptions: { module: ts.ModuleKind.NodeNext },
@@ -22,7 +25,7 @@ export async function loadConventions(hugeNxConventionsPath: string, pmc: Packag
   return eval(outputText) as HugeNxConventions;
 }
 
-async function installPackages(imports: string[], pmc: PackageManagerCommands) {
+async function installPackages(imports: string[]) {
   // TODO : should install the package with the correct version so we should read the package.json where the ts file is located
   // TODO : then that approach should be also used to read the tsconfig
   // const npmPackages = imports.filter((imp) => !imp.startsWith('.') && !imp.startsWith('huge-nx') && !imp.startsWith('@nx/'));
@@ -31,7 +34,7 @@ async function installPackages(imports: string[], pmc: PackageManagerCommands) {
   const nxPlugins = imports.filter((imp) => imp.startsWith('@nx/'));
 
   for (const nxPlugin of nxPlugins) {
-    installNxPlugin(nxPlugin, pmc);
+    installNxPlugin(nxPlugin);
   }
 }
 

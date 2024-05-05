@@ -7,7 +7,8 @@
     "url": "https://github.com/jogelin/huge-nx"
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.2"
+    "@swc/helpers": "~0.5.2",
+    "nx": "18.2.2"
   },
   "type": "commonjs",
   "main": "./src/index.js",
