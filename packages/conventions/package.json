@@ -9,7 +9,6 @@
   "dependencies": {
     "@nx/devkit": "18.2.2",
     "@huge-nx/devkit": "*",
-    "nx": "18.2.2",
     "tslib": "^2.3.0",
     "typescript": "5.4.4",
     "create-nx-workspace": "18.1.2",

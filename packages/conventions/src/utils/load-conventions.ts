@@ -4,8 +4,6 @@ import { readFileSync } from 'node:fs';
 import { HugeNxConventions } from '../types/huge-nx-conventions';
 import { output } from 'create-nx-workspace/src/utils/output';
 import { installNxPlugin } from './nx-plugins';
-import { PackageManagerCommands } from 'nx/src/utils/package-manager';
-import { join } from 'node:path';
 
 export const hugeNxConventionsFileName = 'huge-nx.conventions.ts';
 
