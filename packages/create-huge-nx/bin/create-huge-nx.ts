@@ -9,7 +9,7 @@ import { showNxWarning } from 'create-nx-workspace/src/utils/nx/show-nx-warning'
 import { existsSync } from 'node:fs';
 import * as chalk from 'chalk';
 import { execSync } from 'node:child_process';
-import { hugeNxVersion } from '@huge-nx/devkit';
+import { hugeNxVersion, objectToInlineArgs } from '@huge-nx/devkit';
 
 interface Arguments extends CreateWorkspaceOptions {
   hugeNxConventions: string;
@@ -41,6 +41,11 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
             describe: chalk.dim`Nx version to use in the new workspace`,
             default: 'latest',
             type: 'string',
+          })
+          .option('interactive', {
+            describe: 'When false disables interactive input prompts for options.',
+            type: 'boolean',
+            default: true,
           }),
         withNxCloud,
         withAllPrompts,
@@ -71,7 +76,7 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
 async function main(parsedArgs: yargs.Arguments<Arguments>) {
   const createNxWorkspaceCmd = `npx --yes create-nx-workspace@${parsedArgs.nxVersion} --preset "@huge-nx/conventions@${hugeNxVersion}" ${getInlineArgv(
     parsedArgs
-  )} --no-interactive`;
+  )}`;
 
   output.log({
     title: `Creating your Huge Nx workspace with Nx ${parsedArgs.nxVersion} and preset @huge-nx/conventions@${hugeNxVersion}`,
@@ -124,7 +129,7 @@ function getInlineArgv(argv: yargs.Arguments<Arguments>): string {
     'packageManager',
     'defaultBase',
     'nxCloud',
-    // 'interactive',
+    'interactive',
     // 'skipGit',
     // 'commit',
     // 'cliName',
@@ -136,15 +141,10 @@ function getInlineArgv(argv: yargs.Arguments<Arguments>): string {
       ...(createNxArgsKeys.includes(key as keyof Arguments) && { [key]: argv[key] }),
     }),
     {}
-  ) as Arguments;
+  ) as Record<string, string | boolean | number>;
 
   //transform filteredArgv to inline arguments
-  return Object.entries(filteredArgv).reduce((acc, [key, value]) => {
-    if (typeof value === 'boolean') {
-      return acc + (value ? ` --${key}` : '');
-    }
-    return acc + ` --${key}=${value}`;
-  }, '');
+  return objectToInlineArgs(filteredArgv);
 }
 
 function invariant<T = string | number | boolean>(predicate: T, message: CLIErrorMessageConfig): asserts predicate is NonNullable<T> {

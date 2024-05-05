@@ -50,7 +50,7 @@ if (!hugeNxConventionsArgv || !workspaceName) {
 
   rmSync(workspaceName, { force: true, recursive: true });
 
-  const createCmd = `npx --yes create-huge-nx@latest ${workspaceName} --hugeNxConventions=${hugeNxConventionsArgv} --nxVersion ${nxVersion} --nxCloud skip --verbose`;
+  const createCmd = `npx --yes create-huge-nx@latest ${workspaceName} --hugeNxConventions=${hugeNxConventionsArgv} --nxVersion ${nxVersion} --nxCloud skip --interactive false --verbose`;
 
   console.log(createCmd);
 
