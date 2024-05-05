@@ -8,6 +8,7 @@ import { getPmc, objectToInlineArgs } from '@huge-nx/devkit';
 import { execSync } from 'node:child_process';
 import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions';
 import { join } from 'node:path';
+import { minimatch } from 'minimatch';
 
 type ProjectTypeGeneratorExtraSchema = ProjectTypeGeneratorSchema & { extraOptionsByGenerator?: OptionsByGenerator };
 
@@ -32,16 +33,25 @@ export async function projectTypeGeneratorInternal(tree: Tree, options: ProjectT
 
   const { name, projectType, directory, extraOptionsByGenerator } = normalizeOptions(options);
 
-  const defaultGenerators = hugeNxConventions.generators;
-
-  const projectTypeGenerators = hugeNxConventions.projectTypes[projectType].generators;
-
-  if (!projectTypeGenerators) {
+  if (!hugeNxConventions.projectTypes[projectType]) {
     output.error({
       title: `Project Type ${projectType} is not in your convention file`,
     });
     process.exit(1);
   }
+
+  const projectTypeGenerators = hugeNxConventions.projectTypes[projectType].generators;
+  const projectTypeNamePattern = hugeNxConventions.projectTypes[projectType].projectPattern;
+
+  if (!minimatch(name, projectTypeNamePattern)) {
+    output.error({
+      title: `Project Name ${name} should match the Related Project Type Pattern ${projectTypeNamePattern}`,
+    });
+    process.exit(1);
+  }
+
+  const defaultGenerators = hugeNxConventions.generators;
+
   // execute all generators sequentially
   for (const { generator, options } of projectTypeGenerators) {
     const dir = `${directory}/${name}`;
