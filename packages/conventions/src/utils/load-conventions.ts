@@ -6,21 +6,25 @@ import { output } from 'create-nx-workspace/src/utils/output';
 import { installNxPlugin } from './nx-plugins';
 
 export const hugeNxConventionsFileName = 'huge-nx.conventions.ts';
+let hugeNxConventionsCache: HugeNxConventions;
 
 export async function loadConventions(hugeNxConventionsPath: string): Promise<HugeNxConventions> {
-  output.log({
-    title: `Loading conventions from ${hugeNxConventionsPath}`,
-  });
+  if (!hugeNxConventionsCache) {
+    output.log({
+      title: `Loading conventions from ${hugeNxConventionsPath}`,
+    });
 
-  const sourceFile = ts.createSourceFile(hugeNxConventionsPath, readFileSync(hugeNxConventionsPath, { encoding: 'utf8' }), ts.ScriptTarget.Latest);
+    const sourceFile = ts.createSourceFile(hugeNxConventionsPath, readFileSync(hugeNxConventionsPath, { encoding: 'utf8' }), ts.ScriptTarget.Latest);
 
-  const imports = parseTsImports(sourceFile);
-  await installPackages(imports);
+    const imports = parseTsImports(sourceFile);
+    await installPackages(imports);
 
-  const { outputText } = ts.transpileModule(sourceFile.text, {
-    compilerOptions: { module: ts.ModuleKind.NodeNext },
-  });
-  return eval(outputText) as HugeNxConventions;
+    const { outputText } = ts.transpileModule(sourceFile.text, {
+      compilerOptions: { module: ts.ModuleKind.NodeNext },
+    });
+    hugeNxConventionsCache = eval(outputText) as HugeNxConventions;
+  }
+  return hugeNxConventionsCache;
 }
 
 async function installPackages(imports: string[]) {

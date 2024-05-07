@@ -1,18 +1,18 @@
 import { addDependenciesToPackageJson, formatFiles, Tree } from '@nx/devkit';
 import { PresetGeneratorSchema } from './schema';
 import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions';
-import { HugeNxConventions, HugeNxWorkspace, instanceOfHugeNxNodeWithExtraOptions } from '../../types/huge-nx-conventions';
+import { HugeNxWorkspace, instanceOfHugeNxNodeWithExtraOptions } from '../../types/huge-nx-conventions';
 import { join, resolve } from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { hugeNxVersion } from '@huge-nx/devkit';
 import { output } from 'create-nx-workspace/src/utils/output';
 import { projectTypeGeneratorInternal } from '../project-type/generator';
 
-async function generateWorkspaceNodes(nxWorkspace: HugeNxWorkspace, tree: Tree, hugeNxConventions: HugeNxConventions, directory?: string): Promise<void> {
+async function generateWorkspaceNodes(nxWorkspace: HugeNxWorkspace, tree: Tree, directory?: string): Promise<void> {
   for (const [nodeName, nodeValue] of Object.entries(nxWorkspace)) {
     // if a parent folder, call recursively
     if (typeof nodeValue !== 'string' && !instanceOfHugeNxNodeWithExtraOptions(nodeValue)) {
-      await generateWorkspaceNodes(nodeValue, tree, hugeNxConventions, directory ? `${directory}/${nodeName}` : nodeName);
+      await generateWorkspaceNodes(nodeValue, tree, directory ? `${directory}/${nodeName}` : nodeName);
       continue;
     }
     const projectType = instanceOfHugeNxNodeWithExtraOptions(nodeValue) ? nodeValue.projectType : nodeValue;
@@ -50,7 +50,7 @@ export async function presetGenerator(tree: Tree, options: PresetGeneratorSchema
     title: `Applying conventions generators to you workspace`,
   });
 
-  await generateWorkspaceNodes(hugeNxConventions.workspace, tree, hugeNxConventions);
+  await generateWorkspaceNodes(hugeNxConventions.workspace, tree);
 
   await formatFiles(tree);
 }
