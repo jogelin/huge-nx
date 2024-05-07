@@ -1,3 +1,26 @@
+## 0.5.0 (2024-05-07)
+
+
+### 🚀 Features
+
+- **conventions:** Add Conventions for Angular Full Stack ([cee42b9](https://github.com/jogelin/huge-nx/commit/cee42b9))
+- **conventions:** Allow to specify interactive value to decide if input are requested or not from create-workspace or project type generator ([f684594](https://github.com/jogelin/huge-nx/commit/f684594))
+- **project-type:** Generate any Project Type from a Generic Generator ([fa6922c](https://github.com/jogelin/huge-nx/commit/fa6922c))
+- **project-type:** Validate new generated project name ([775e7ca](https://github.com/jogelin/huge-nx/commit/775e7ca))
+
+### 🩹 Fixes
+
+- **ci:** Fix npm script on CI ([1bf15ad](https://github.com/jogelin/huge-nx/commit/1bf15ad))
+- **conventions:** Fix lint ([75a4395](https://github.com/jogelin/huge-nx/commit/75a4395))
+- **devkit:** Configure devkit as publish lib ([a2865bf](https://github.com/jogelin/huge-nx/commit/a2865bf))
+- **format:** Fix formatting Changelog ([a89f3f0](https://github.com/jogelin/huge-nx/commit/a89f3f0))
+- **format:** Fix format ([03b685b](https://github.com/jogelin/huge-nx/commit/03b685b))
+- **lint:** Fix missing library for conventions ([0d85afd](https://github.com/jogelin/huge-nx/commit/0d85afd))
+
+### ❤️  Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.4.0 (2024-04-16)
 
 ### 🚀 Features
