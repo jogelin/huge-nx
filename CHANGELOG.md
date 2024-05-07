@@ -1,6 +1,5 @@
 ## 0.5.0 (2024-05-07)
 
-
 ### 🚀 Features
 
 - **conventions:** Add Conventions for Angular Full Stack ([cee42b9](https://github.com/jogelin/huge-nx/commit/cee42b9))
@@ -17,7 +16,7 @@
 - **format:** Fix format ([03b685b](https://github.com/jogelin/huge-nx/commit/03b685b))
 - **lint:** Fix missing library for conventions ([0d85afd](https://github.com/jogelin/huge-nx/commit/0d85afd))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Jonathan Gelin @jogelin
 
