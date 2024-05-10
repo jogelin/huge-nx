@@ -294,7 +294,7 @@ You can also create one **Nx plugin** that matches the **ProjectType** naming co
 
 Related to the fact that you can **regenerate** a new workspace from scratch for a specific Nx version, you can now easily generate a workspace with the **latest Nx** and **compare it with your workspace**.
 
-![Nx Repo Diff](./doc/videos/nx-diff.mov)
+https://github.com/jogelin/huge-nx/assets/954509/614c9b4e-0c37-4d2a-abbe-b3952eb91d06
 
 You can also use tools like [Betterer](https://phenomnomnominal.github.io/betterer/) if you want to migrate step by step your repository to your HugeNx’s Conventions.
 
