@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.5.2",
-    "nx": "18.2.2"
+    "nx": "19.0.2"
   },
   "type": "commonjs",
   "main": "./src/index.js",
