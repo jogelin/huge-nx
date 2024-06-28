@@ -7,7 +7,6 @@
     "url": "https://github.com/jogelin/huge-nx"
   },
   "dependencies": {
-    "@nx/devkit": "19.0.2",
     "@huge-nx/devkit": "*",
     "tslib": "^2.3.0",
     "typescript": "5.4.4",
