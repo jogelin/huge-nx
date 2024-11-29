@@ -1,6 +1,6 @@
 import { addDependenciesToPackageJson, formatFiles, Tree } from '@nx/devkit';
 import { PresetGeneratorSchema } from './schema';
-import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions';
+import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions.util';
 import { HugeNxWorkspace, instanceOfHugeNxNodeWithExtraOptions } from '../../types/huge-nx-conventions';
 import { join, resolve } from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -34,7 +34,9 @@ export async function presetGenerator(tree: Tree, options: PresetGeneratorSchema
   const installDeps = addDependenciesToPackageJson(tree, {}, { ['@huge-nx/conventions']: hugeNxVersion });
   await installDeps();
 
-  const hugeNxConventionsSource = resolve(tree.root, '..', options.hugeNxConventions);
+  const hugeNxConventionsSource = options.hugeNxConventions.endsWith('ts')
+    ? resolve(tree.root, '..', options.hugeNxConventions)
+    : resolve(tree.root, `./node_modules/@huge-nx/conventions/samples/${options.hugeNxConventions}.conventions.ts`);
   const hugeNxConventionsDest = join(tree.root, hugeNxConventionsFileName);
 
   output.log({

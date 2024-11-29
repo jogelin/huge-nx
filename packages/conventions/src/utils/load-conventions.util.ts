@@ -3,7 +3,7 @@ import * as ts from 'typescript';
 import { readFileSync } from 'node:fs';
 import { HugeNxConventions } from '../types/huge-nx-conventions';
 import { output } from 'create-nx-workspace/src/utils/output';
-import { installNxPlugin } from './nx-plugins';
+import { installNxPlugin } from './nx-plugins.util';
 
 export const hugeNxConventionsFileName = 'huge-nx.conventions.ts';
 let hugeNxConventionsCache: HugeNxConventions;
@@ -41,7 +41,7 @@ async function installPackages(imports: string[]) {
 }
 
 function parseTsImports(sourceFile: ts.SourceFile): string[] {
-  const imports = [];
+  const imports: string[] = [];
   const visit = (node: ts.Node) => {
     if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
       const importPath = node.moduleSpecifier.text;

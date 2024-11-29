@@ -3,10 +3,10 @@ import { ProjectTypeGeneratorSchema } from './schema';
 import { GeneratorOptions, OptionsByGenerator } from '../../types/huge-nx-conventions';
 import { output } from 'create-nx-workspace/src/utils/output';
 import * as process from 'node:process';
-import { installNxPlugin } from '../../utils/nx-plugins';
+import { installNxPlugin } from '../../utils/nx-plugins.util';
 import { getPmc, objectToInlineArgs } from '@huge-nx/devkit';
 import { execSync } from 'node:child_process';
-import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions';
+import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions.util';
 import { join } from 'node:path';
 import { minimatch } from 'minimatch';
 
@@ -17,7 +17,7 @@ async function runGenerator(generator: string, options: GeneratorOptions) {
 
   const generatorCmd = `${getPmc().exec} nx g ${generator} ${objectToInlineArgs(options)}`;
   output.log({
-    title: `Apply generator ${generator} on project ${options.name}`,
+    title: `Apply generator ${generator} on project ${options['name']}`,
     bodyLines: [generatorCmd],
   });
   execSync(generatorCmd, { stdio: 'inherit' });
@@ -58,7 +58,7 @@ export async function projectTypeGeneratorInternal(tree: Tree, options: ProjectT
 
     const generatorDefaultOptions = defaultGenerators?.[generator] ?? {};
     const projectTypeDefaultOptions = options ?? {};
-    const directoryOptions = { name, directory: dir, projectNameAndRootFormat: 'as-provided' };
+    const directoryOptions = { name, directory: dir };
     const extraOptions = extraOptionsByGenerator?.[generator] ?? {};
 
     const allOptions = {
