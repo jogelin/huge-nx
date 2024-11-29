@@ -1,5 +1,5 @@
 {
-  "name": "conventions",
+  "name": "huge-nx-conventions",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/conventions/src",
   "projectType": "library",
@@ -41,6 +41,11 @@
             "input": "./packages/conventions",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./packages/samples",
+            "glob": "**/*.ts",
+            "output": "./samples"
           }
         ]
       }
@@ -48,16 +53,6 @@
     "nx-release-publish": {
       "options": {
         "packageRoot": "dist/{projectRoot}"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/conventions/jest.config.ts"
       }
     }
   }

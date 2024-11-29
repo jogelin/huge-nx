@@ -3,6 +3,14 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/create-huge-nx/bin",
   "projectType": "library",
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  },
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -18,26 +26,7 @@
       "options": {
         "packageRoot": "dist/{projectRoot}"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "packages/create-huge-nx/jest.config.ts"
-      }
     }
   },
-  "tags": [],
-  "release": {
-    "version": {
-      "generatorOptions": {
-        "packageRoot": "dist/{projectRoot}",
-        "currentVersionResolver": "git-tag"
-      }
-    }
-  },
-  "implicitDependencies": ["conventions"]
+  "tags": []
 }

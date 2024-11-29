@@ -1,5 +1,5 @@
 {
-  "name": "devkit",
+  "name": "huge-nx-devkit",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/devkit/src",
   "projectType": "library",
@@ -26,13 +26,6 @@
     "nx-release-publish": {
       "options": {
         "packageRoot": "dist/{projectRoot}"
-      }
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
-      "options": {
-        "reportsDirectory": "../../coverage/packages/devkit"
       }
     }
   }
