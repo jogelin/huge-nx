@@ -9,9 +9,10 @@
   "dependencies": {
     "@huge-nx/devkit": "*",
     "tslib": "^2.3.0",
-    "typescript": "5.4.4",
-    "create-nx-workspace": "18.1.2",
-    "minimatch": "^9.0.4"
+    "typescript": "5.5.4",
+    "create-nx-workspace": "20.1.3",
+    "minimatch": "^9.0.4",
+    "@nx/devkit": "20.1.3"
   },
   "type": "commonjs",
   "main": "./src/index.js",

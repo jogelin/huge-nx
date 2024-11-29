@@ -7,15 +7,14 @@ import { rmSync } from 'node:fs';
 const localRegistryTarget = '@huge-nx/source:local-registry';
 
 // Callback used to stop Verdaccio process
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 let stopLocalRegistry = () => {};
 
 const hugeNxConventionsArgv = process.argv[2];
 const nxVersion = process.argv[3] ?? 'latest';
 const workspaceName = hugeNxConventionsArgv.split('/')?.pop()?.replace('.conventions.ts', `-${nxVersion}`);
 if (!hugeNxConventionsArgv || !workspaceName) {
-  throw new Error(
-    'Provide the conventions file path like npx ts-node ./tools/scripts/publish-local.ts ./huge-nx/packages/conventions/src/examples/huge-angular-monorepo.conventions.ts'
-  );
+  throw new Error('Provide the conventions name like npx ts-node ./tools/scripts/publish-local.ts huge-angular-monorep');
 }
 
 (async () => {
@@ -66,7 +65,8 @@ if (!hugeNxConventionsArgv || !workspaceName) {
 
   stopLocalRegistry();
 
-  process.exit(publishStatus);
+  const exitStatus = Object.values(publishStatus).reduce((acc, result) => result.code + acc, 0);
+  process.exit(exitStatus);
 })().catch((e) => {
   // If anything goes wrong, stop Verdaccio
   console.error(e);

@@ -12,8 +12,12 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
+  "sync": {
+    "disabledTaskSyncGenerators": ["@nx/js:typescript-sync"]
+  },
+  "nxCloudId": "65f9a9a4ece23f30300c04c9",
   "targetDefaults": {
     "@nx/js:tsc": {
       "cache": true,
@@ -22,25 +26,7 @@
     },
     "@nx/eslint:lint": {
       "cache": true,
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore", "{workspaceRoot}/eslint.config.js"]
-    },
-    "@nx/jest:jest": {
-      "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "@nx/js:swc": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
     },
     "@nx/vite:test": {
       "cache": true,
@@ -58,13 +44,36 @@
       }
     }
   },
-  "nxCloudAccessToken": "OGJhODUxYjQtNzcyMy00YjQwLWFiMDQtN2NmNmUzZGZjNGVmfHJlYWQtd3JpdGU=",
   "plugins": [
+    {
+      "plugin": "@nx/js/typescript",
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        },
+        "build": {
+          "targetName": "build",
+          "configName": "tsconfig.lib.json"
+        }
+      }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "typecheckTargetName": "typecheck"
+      }
+    },
     {
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
       }
     }
-  ]
+  ],
+  "useLegacyCache": true
 }

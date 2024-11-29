@@ -5,11 +5,11 @@ import type { CreateWorkspaceOptions } from 'create-nx-workspace';
 import { CLIErrorMessageConfig, output } from 'create-nx-workspace/src/utils/output';
 import { determineDefaultBase, determineNxCloud, determinePackageManager } from 'create-nx-workspace/src/internal-utils/prompts';
 import { withAllPrompts, withGitOptions, withNxCloud, withOptions, withPackageManager } from 'create-nx-workspace/src/internal-utils/yargs-options';
-import { showNxWarning } from 'create-nx-workspace/src/utils/nx/show-nx-warning';
 import { existsSync } from 'node:fs';
 import * as chalk from 'chalk';
 import { execSync } from 'node:child_process';
 import { hugeNxVersion, objectToInlineArgs } from '@huge-nx/devkit';
+import { conventionSamples } from './convention-samples';
 
 interface Arguments extends CreateWorkspaceOptions {
   hugeNxConventions: string;
@@ -27,6 +27,8 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
     '$0 [name] [options]',
     'Create a new Nx workspace',
     (yargs) =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       withOptions(
         yargs
           .option('name', {
@@ -34,11 +36,11 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
             type: 'string',
           })
           .option('hugeNxConventions', {
-            describe: chalk.dim`Path to the Huge Nx Convention file (e.g. ./huge-nx.conventions.json)`,
+            describe: chalk.dim`Path to the Huge Nx Conventions. Existing conventions or distant conventions file`,
             type: 'string',
           })
           .option('nxVersion', {
-            describe: chalk.dim`Nx version to use in the new workspace`,
+            describe: chalk.dim`Nx version to use in the new workspace (default: latest)`,
             default: 'latest',
             type: 'string',
           })
@@ -55,7 +57,6 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
 
     async function handler(argv: yargs.ArgumentsCamelCase<Arguments>) {
       await main(argv).catch((error) => {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         output.error({
           title: `Something went wrong! v${hugeNxVersion}`,
         });
@@ -69,7 +70,7 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
   .version(
     'version',
     chalk.dim`Show version`,
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+
     require('../package.json').version
   ) as yargs.Argv<Arguments>;
 
@@ -84,10 +85,9 @@ async function main(parsedArgs: yargs.Arguments<Arguments>) {
   });
 
   execSync(createNxWorkspaceCmd, { stdio: 'inherit' });
-  showNxWarning(parsedArgs.name);
 
   output.log({
-    title: `Successfully applied preset: ${parsedArgs.preset}`,
+    title: `Successfully applied preset: ${parsedArgs['preset']}`,
   });
 }
 
@@ -187,20 +187,30 @@ async function determineConventions(parsedArgs: yargs.Arguments<Arguments>): Pro
         {
           type: 'input',
           name: 'hugeNxConventions',
-          message: `Where is located your huge-nx.conventions.json file?`,
+          message: `Choose one of these existing conventions OR specify a distant file by using --hugeNxConventions=./my-huge-nx.conventions.ts`,
           initial: './huge-nx.conventions.json',
         },
       ])
       .then((reply) => reply.hugeNxConventions));
 
   invariant(hugeNxConventions, {
-    title: 'Invalid Path',
-    bodyLines: [`Path cannot be empty`],
+    title: 'Invalid Conventions',
+    bodyLines: [`You have to select a conventions file or name`],
   });
 
-  invariant(existsSync(hugeNxConventions), {
-    title: `The huge-nx.conventions.json file cannot be found at ${hugeNxConventions}`,
-  });
+  // if it is a ts file, we need to check if the file exists
+  if (hugeNxConventions.endsWith('.ts')) {
+    invariant(existsSync(hugeNxConventions), {
+      title: `The file ${hugeNxConventions} cannot be found`,
+    });
+  }
+  // it should be a name of a convention
+  else {
+    invariant(conventionSamples.includes(hugeNxConventions), {
+      title: 'Invalid Convention Name',
+      bodyLines: [`It should be part of the conventions list: ${conventionSamples.join(', ')}`],
+    });
+  }
 
   return hugeNxConventions as string;
 }
