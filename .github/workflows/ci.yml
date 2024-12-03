@@ -12,6 +12,8 @@ permissions:
 
 jobs:
   main:
+    env:
+      NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
