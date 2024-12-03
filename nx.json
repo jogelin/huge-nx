@@ -17,9 +17,14 @@
   "sync": {
     "disabledTaskSyncGenerators": ["@nx/js:typescript-sync"]
   },
-  "nxCloudId": "65f9a9a4ece23f30300c04c9",
+  "nxCloudId": "66067fd96d89b748e00155ce",
   "targetDefaults": {
     "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "@nx/js:swc": {
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
