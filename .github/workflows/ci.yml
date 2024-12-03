@@ -12,7 +12,7 @@ permissions:
 
 env:
   NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
-#  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
 jobs:
   main:
