@@ -57,4 +57,4 @@ jobs:
 
       - run: pnpm exec nx-cloud record -- nx format:check
       - run: pnpm exec nx affected -t lint test build
-      - run: pnpm run create:nx-preset-angular-monorepo
+      - run: pnpm exec nx-cloud record -- pnpm run create:nx-preset-angular-monorepo
