@@ -28,7 +28,7 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
       - uses: nrwl/nx-set-shas@v4
 
       # Connect your workspace on nx.app and uncomment this to enable task distribution.

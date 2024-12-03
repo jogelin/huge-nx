@@ -75,5 +75,5 @@
       }
     }
   ],
-  "useLegacyCache": true
+  "useLegacyCache": false
 }
