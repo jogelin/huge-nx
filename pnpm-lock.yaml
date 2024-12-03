@@ -29,6 +29,9 @@ importers:
       '@nx/plugin':
         specifier: 20.1.3
         version: 20.1.3(@babel/traverse@7.24.1)(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.5.4))(@swc/core@1.5.7(@swc/helpers@0.5.11))(@types/node@18.16.9)(@zkochan/js-yaml@0.0.7)(eslint@9.15.0(jiti@1.21.0))(nx@20.1.3(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.5.4))(@swc/core@1.5.7(@swc/helpers@0.5.11)))(ts-node@10.9.1(@swc/core@1.5.7(@swc/helpers@0.5.11))(@types/node@18.16.9)(typescript@5.5.4))(typescript@5.5.4)(verdaccio@5.29.2(typanion@3.14.0))
+      '@nx/powerpack-license':
+        specifier: ^1.0.14
+        version: 1.0.14
       '@nx/vite':
         specifier: 20.1.3
         version: 20.1.3(@babel/traverse@7.24.1)(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.5.4))(@swc/core@1.5.7(@swc/helpers@0.5.11))(@types/node@18.16.9)(nx@20.1.3(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.5.4))(@swc/core@1.5.7(@swc/helpers@0.5.11)))(typescript@5.5.4)(verdaccio@5.29.2(typanion@3.14.0))(vite@5.0.13(@types/node@18.16.9)(less@4.2.0)(sass@1.72.0)(stylus@0.64.0)(terser@5.30.0))(vitest@1.5.0)
@@ -1234,6 +1237,64 @@ packages:
 
   '@nx/plugin@20.1.3':
     resolution: {integrity: sha512-585GtoI21Hjk54K986VzPTnfjX2DQF7H9MjG7V58MqN3FIHiNHnNypCf7TliTrawj0ydib3KZUFGJJ8ilYZvqQ==}
+
+  '@nx/powerpack-license-darwin-arm64@1.0.14':
+    resolution: {integrity: sha512-sK9BEe603hdcM1J+s0JSVDWAbpXXBx4kZSMIyjXIF56lcL/9t5irRuhdPc/VEUCvFMfaUn9mvoH0OTTIRXgjvg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@nx/powerpack-license-darwin-x64@1.0.14':
+    resolution: {integrity: sha512-CGQzHJxIWaPal4iwc7oPX8urrtP18R0B6kP0g6UC11Xt6MdfpnF0i0cFThjal8I8LFxvuv3u4Hjy580y+V2ZnA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@nx/powerpack-license-linux-arm-gnueabihf@1.0.14':
+    resolution: {integrity: sha512-gCraemd1mwN9tV95QMkvdnk3NQJ9wkXFqfU5dKyrY+j5asM6G+Ehgrq79JGg7+VCnFswDuN6VPuy58Zmx4jp5w==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [linux]
+
+  '@nx/powerpack-license-linux-arm64-gnu@1.0.14':
+    resolution: {integrity: sha512-ewaWP7JQ5ZEKgg7DmNk/YCLSq9zYslk14bquAIUmwcl0NKfK2Emv4czsJs/MnplkQhjPPGhDpFMVLomT1fSXHQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@nx/powerpack-license-linux-arm64-musl@1.0.14':
+    resolution: {integrity: sha512-M3Y19JJRAYYPXYyG4OfdYtTmxUGB0pEYi92XJxYUZ0Gsa0cd1/ljVtXh7iGI6GBsectWwtqQdENhuRE3FuKS/A==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@nx/powerpack-license-linux-x64-gnu@1.0.14':
+    resolution: {integrity: sha512-GSINQzjuDL23HnE5eFwNhAcd1CQtmkM0mQ66VDj10kZMmhTJND1sPSFh++lNDDC6aj3NKzx3as5oT0cNb2i6gg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@nx/powerpack-license-linux-x64-musl@1.0.14':
+    resolution: {integrity: sha512-oBmaaBflnrHCH70Vsw4CfAWDdUIFw+1M1wFeCk8f4xe7Y2VwafLzSShih4ZDwSyCkPchJRSuVlKdMqlIYRtciQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@nx/powerpack-license-win32-arm64-msvc@1.0.14':
+    resolution: {integrity: sha512-0ianJ//39lXoS6tKFKKIABWbSHu7i0/HZsXU5L4m78Hy+oYzms4NAF+9t0CzB5s5EwYZzg5tEVMqzG16sJPLig==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@nx/powerpack-license-win32-x64-msvc@1.0.14':
+    resolution: {integrity: sha512-mirkSQcqBKjAorRL22JQkedZcq3y1ilo9sD6cluwbh8MT03s6tbzpy6ZP+RUmbM3KGvrNaMOP72tPcSF2K+LVw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+
+  '@nx/powerpack-license@1.0.14':
+    resolution: {integrity: sha512-F+gCRD2Hk+xk44WcksBTZXWwMaCpF8PZBNvazva/2naHaKLaYWiZmZ/JdJk0W3XSD/bC0rLSv9VIIo2RpzBfeQ==}
+    engines: {node: '>= 10'}
 
   '@nx/vite@20.1.3':
     resolution: {integrity: sha512-rVWGGTEo9T2YQobBL/AztWXTjnSVqItpby5xCyBmmx1U4nLswKS39PI18ImUbkmU627P1aPNAx1cBFwgBeq8Fg==}
@@ -6427,6 +6488,47 @@ snapshots:
       - ts-node
       - typescript
       - verdaccio
+
+  '@nx/powerpack-license-darwin-arm64@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-darwin-x64@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-linux-arm-gnueabihf@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-linux-arm64-gnu@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-linux-arm64-musl@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-linux-x64-gnu@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-linux-x64-musl@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-win32-arm64-msvc@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license-win32-x64-msvc@1.0.14':
+    optional: true
+
+  '@nx/powerpack-license@1.0.14':
+    dependencies:
+      '@napi-rs/wasm-runtime': 0.2.4
+    optionalDependencies:
+      '@nx/powerpack-license-darwin-arm64': 1.0.14
+      '@nx/powerpack-license-darwin-x64': 1.0.14
+      '@nx/powerpack-license-linux-arm-gnueabihf': 1.0.14
+      '@nx/powerpack-license-linux-arm64-gnu': 1.0.14
+      '@nx/powerpack-license-linux-arm64-musl': 1.0.14
+      '@nx/powerpack-license-linux-x64-gnu': 1.0.14
+      '@nx/powerpack-license-linux-x64-musl': 1.0.14
+      '@nx/powerpack-license-win32-arm64-msvc': 1.0.14
+      '@nx/powerpack-license-win32-x64-msvc': 1.0.14
 
   '@nx/vite@20.1.3(@babel/traverse@7.24.1)(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.5.4))(@swc/core@1.5.7(@swc/helpers@0.5.11))(@types/node@18.16.9)(nx@20.1.3(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.5.4))(@swc/core@1.5.7(@swc/helpers@0.5.11)))(typescript@5.5.4)(verdaccio@5.29.2(typanion@3.14.0))(vite@5.0.13(@types/node@18.16.9)(less@4.2.0)(sass@1.72.0)(stylus@0.64.0)(terser@5.30.0))(vitest@1.5.0)':
     dependencies:

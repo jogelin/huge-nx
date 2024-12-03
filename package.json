@@ -22,6 +22,7 @@
     "@nx/jest": "20.1.3",
     "@nx/js": "20.1.3",
     "@nx/plugin": "20.1.3",
+    "@nx/powerpack-license": "^1.0.14",
     "@nx/vite": "20.1.3",
     "@nx/web": "20.1.3",
     "@nx/workspace": "20.1.3",

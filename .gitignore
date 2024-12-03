@@ -38,9 +38,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.nx/cache
-.nx/workspace-data
+.nx
 .angular
 migrations.json
+.env
 
 vite.config.*.timestamp*
