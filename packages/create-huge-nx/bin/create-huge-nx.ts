@@ -26,34 +26,29 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
     // this is the default and only command
     '$0 [name] [options]',
     'Create a new Nx workspace',
-    (yargs) =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      withOptions(
-        yargs
-          .option('name', {
-            describe: chalk.dim`Workspace name (e.g. org name)`,
-            type: 'string',
-          })
-          .option('hugeNxConventions', {
-            describe: chalk.dim`Path to the Huge Nx Conventions. Existing conventions or distant conventions file`,
-            type: 'string',
-          })
-          .option('nxVersion', {
-            describe: chalk.dim`Nx version to use in the new workspace (default: latest)`,
-            default: 'latest',
-            type: 'string',
-          })
-          .option('interactive', {
-            describe: 'When false disables interactive input prompts for options.',
-            type: 'boolean',
-            default: true,
-          }),
-        withNxCloud,
-        withAllPrompts,
-        withPackageManager,
-        withGitOptions
-      ),
+    (yargs) => {
+      const baseOptions = yargs
+        .option('name', {
+          describe: chalk.dim`Workspace name (e.g. org name)`,
+          type: 'string',
+        })
+        .option('hugeNxConventions', {
+          describe: chalk.dim`Path to the Huge Nx Conventions. Existing conventions or distant conventions file`,
+          type: 'string',
+        })
+        .option('nxVersion', {
+          describe: chalk.dim`Nx version to use in the new workspace (default: latest)`,
+          default: 'latest',
+          type: 'string',
+        })
+        .option('interactive', {
+          describe: 'When false disables interactive input prompts for options.',
+          type: 'boolean',
+          default: true,
+        }) as yargs.Argv<Arguments>;
+
+      return withOptions(baseOptions, withNxCloud, withAllPrompts, withPackageManager, withGitOptions);
+    },
 
     async function handler(argv: yargs.ArgumentsCamelCase<Arguments>) {
       await main(argv).catch((error) => {
