@@ -13,6 +13,8 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,11 +38,5 @@ jobs:
       # - run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build"
 
       - run: pnpm exec nx-cloud record -- nx format:check
-        env:
-          NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
-      - run: pnpm exec nx affected -t lint test build
-        env:
-          NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
+      - run: pnpm exec nx affected -t lint test build --verbose
       - run: pnpm run create:nx-preset-angular-monorepo
-        env:
-          NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
