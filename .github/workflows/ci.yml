@@ -11,6 +11,8 @@ permissions:
   contents: read
 
 env:
+  PNPM_VERSION: 9.12.1
+  NODE_VERSION: 20
   NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
   NX_PERF_LOGGING: '${{ secrets.ACTIONS_STEP_DEBUG || false }}'
@@ -26,13 +28,13 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: ${{ env.PNPM_VERSION }}
           run_install: false
 
       # Cache node_modules
       - uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
       - name: Cache node_modules
@@ -41,7 +43,7 @@ jobs:
         with:
           lookup-only: true
           path: '**/node_modules'
-          key: ${{ runner.os }}-modules-20-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-modules-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install packages
         if: steps.cache-modules.outputs.cache-hit != 'true'
