@@ -35,7 +35,17 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - run: pnpm install
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v4
+        with:
+          lookup-only: true
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-20-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install packages
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
 
       - uses: nrwl/nx-set-shas@v4
 
