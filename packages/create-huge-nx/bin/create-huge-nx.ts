@@ -9,7 +9,7 @@ import { existsSync } from 'node:fs';
 import * as chalk from 'chalk';
 import { execSync } from 'node:child_process';
 import { hugeNxVersion, objectToInlineArgs } from '@huge-nx/devkit';
-import { conventionSamples } from './convention-samples';
+import { conventionExamples } from './convention-examples';
 
 interface Arguments extends CreateWorkspaceOptions {
   hugeNxConventions: string;
@@ -201,9 +201,9 @@ async function determineConventions(parsedArgs: yargs.Arguments<Arguments>): Pro
   }
   // it should be a name of a convention
   else {
-    invariant(conventionSamples.includes(hugeNxConventions), {
+    invariant(conventionExamples.includes(hugeNxConventions), {
       title: 'Invalid Convention Name',
-      bodyLines: [`It should be part of the conventions list: ${conventionSamples.join(', ')}`],
+      bodyLines: [`It should be part of the conventions list: ${conventionExamples.join(', ')}`],
     });
   }
 

@@ -1,4 +1,4 @@
-export const conventionSamples = [
+export const conventionExamples = [
   'huge-angular-full-stack',
   'huge-angular-mf',
   'nx-preset-angular-monorepo',

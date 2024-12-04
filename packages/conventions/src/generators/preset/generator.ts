@@ -36,7 +36,7 @@ export async function presetGenerator(tree: Tree, options: PresetGeneratorSchema
 
   const hugeNxConventionsSource = options.hugeNxConventions.endsWith('ts')
     ? resolve(tree.root, '..', options.hugeNxConventions)
-    : resolve(tree.root, `./node_modules/@huge-nx/conventions/samples/${options.hugeNxConventions}.conventions.ts`);
+    : resolve(tree.root, `./node_modules/@huge-nx/conventions/examples/${options.hugeNxConventions}.conventions.ts`);
   const hugeNxConventionsDest = join(tree.root, hugeNxConventionsFileName);
 
   output.log({

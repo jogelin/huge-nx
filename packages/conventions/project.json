@@ -43,9 +43,9 @@
             "output": "."
           },
           {
-            "input": "./packages/samples",
-            "glob": "**/*.ts",
-            "output": "./samples"
+            "input": "./examples",
+            "glob": "**/*.conventions.ts",
+            "output": "./examples"
           }
         ]
       }

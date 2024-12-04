@@ -1,22 +1,21 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { defineConventions } from '@huge-nx/conventions';
 
 export default defineConventions({
   version: '1.0',
   generators: {
     '@nx/angular:application': {
-      bundler: 'vite',
+      bundler: 'esbuild',
     },
   },
   projectTypes: {
-    'global:react:application': {
+    'global:angular:application': {
       projectPattern: '*-app',
-      generators: [{ generator: '@nx/react:application' }],
+      generators: [{ generator: '@nx/angular:application' }],
     },
   },
   workspace: {
     apps: {
-      'my-app': 'global:react:application',
+      'my-app': 'global:angular:application',
     },
   },
 });

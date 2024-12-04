@@ -1,4 +1,3 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { defineConventions } from '@huge-nx/conventions';
 
 export default defineConventions({
