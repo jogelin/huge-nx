@@ -19,37 +19,7 @@ env:
   NX_VERBOSE_LOGGING: '${{ secrets.ACTIONS_STEP_DEBUG || false }}'
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
-
-      # Cache node_modules
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-
-      - name: Cache node_modules
-        id: cache-modules
-        uses: actions/cache@v4
-        with:
-          lookup-only: true
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Install packages
-        if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
   main:
-    needs: prepare
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -61,7 +31,6 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
           run_install: false
 
-      # Cache node_modules
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -81,40 +50,6 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      # Connect your workspace on nx.app and uncomment this to enable task distribution.
-      # The "--stop-agents-after" is optional, but allows idle agents to shut down once the "build" targets have been requested
-      - run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=build
-
+      - run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
       - run: pnpm exec nx-cloud record -- nx format:check
-      - run: pnpm exec nx affected -t lint test build
-  e2e:
-    needs: prepare
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
-
-      # Cache node_modules
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-
-      - name: Cache node_modules
-        id: cache-modules
-        uses: actions/cache@v4
-        with:
-          lookup-only: true
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Install packages
-        if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - run: pnpm exec nx-cloud record -- pnpm run create:nx-preset-angular-monorepo
+      - run: pnpm exec nx affected -t lint test build e2e

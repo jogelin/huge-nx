@@ -11,14 +11,27 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@huge-nx/conventions": ["packages/conventions/src/index.ts"],
-      "@huge-nx/devkit": ["packages/devkit/src/index.ts"]
+      "@huge-nx/conventions": [
+        "packages/conventions/src/index.ts"
+      ],
+      "@huge-nx/devkit": [
+        "packages/devkit/src/index.ts"
+      ],
+      "@huge-nx/e2e-utils": [
+        "e2e/utils/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

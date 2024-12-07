@@ -2,6 +2,7 @@ import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry';
 import { releasePublish, releaseVersion } from 'nx/release';
 import { execSync } from 'node:child_process';
 import { rmSync } from 'node:fs';
+import { join } from 'node:path';
 
 // Related to the target generated in the root project.json
 const localRegistryTarget = '@huge-nx/source:local-registry';
@@ -45,8 +46,6 @@ if (!hugeNxConventionsArgv || !workspaceName) {
     firstRelease: true,
   });
 
-  process.chdir('..');
-
   rmSync(workspaceName, { force: true, recursive: true });
 
   const createCmd = `npx --yes create-huge-nx@latest ${workspaceName} --hugeNxConventions=${hugeNxConventionsArgv} --nxVersion ${nxVersion} --nxCloud skip --interactive false --verbose`;
@@ -55,6 +54,7 @@ if (!hugeNxConventionsArgv || !workspaceName) {
 
   execSync(createCmd, {
     stdio: 'inherit',
+    cwd: join(process.cwd(), '..'),
     env: {
       ...process.env,
       npm_config_registry: 'http://localhost:4873',
