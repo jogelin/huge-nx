@@ -6,9 +6,24 @@ import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import { join } from 'node:path';
 import { exists } from '@nx/plugin/testing';
 import { mkdirSync } from 'node:fs';
+import { isVerbose } from '@huge-nx/devkit';
 
-export function createHugeNxWorkspace(wsName: string, hugeNxConventions: string, { nxVersion = 'latest' }: { nxVersion?: string } = {}) {
-  const command = `npx --yes create-huge-nx@e2e ${wsName} --hugeNxConventions=${hugeNxConventions} --nxVersion ${nxVersion} --nxCloud=skip --no-interactive`;
+export function createHugeNxWorkspace(
+  wsName: string,
+  hugeNxConventions: string,
+  { nxVersion, defaultBase, packageManager }: { nxVersion?: string; defaultBase?: string; packageManager?: string } = {}
+) {
+  let command = `npx --yes create-huge-nx@e2e ${wsName} --hugeNxConventions=${hugeNxConventions} --nxCloud=skip --no-interactive`;
+
+  if (nxVersion) {
+    command += ` --nxVersion=${nxVersion}`;
+  }
+  if (defaultBase) {
+    command += ` --defaultBase=${defaultBase}`;
+  }
+  if (packageManager) {
+    command += ` --packageManager=${packageManager}`;
+  }
 
   if (!exists(tmpE2eRoot)) {
     mkdirSync(tmpE2eRoot, { recursive: true });
@@ -25,8 +40,6 @@ export const getWsName = (hugeNxConventions: string, nxVersion = 'latest') => {
 };
 
 export const getWsCwd = (wsName: string) => join(tmpE2eRoot, wsName);
-
-export const isVerbose = () => isCI || process.env.NX_VERBOSE_LOGGING === 'true' || process.argv.includes('--verbose');
 
 export function uniq(prefix: string): string {
   const randomSevenDigitNumber = Math.floor(Math.random() * 10000000)

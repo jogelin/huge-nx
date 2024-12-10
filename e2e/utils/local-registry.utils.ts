@@ -1,7 +1,10 @@
 import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry';
 import { releasePublish, releaseVersion } from 'nx/release';
+import { workspaceRoot } from 'nx/src/utils/workspace-root';
 
 export async function startLocalRegistryAndRelease() {
+  process.chdir(workspaceRoot);
+
   const localRegistryTarget = '@huge-nx/source:local-registry';
   const storage = './tmp/local-registry/storage';
 

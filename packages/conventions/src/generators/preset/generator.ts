@@ -4,7 +4,7 @@ import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-con
 import { HugeNxWorkspace, instanceOfHugeNxNodeWithExtraOptions } from '../../types/huge-nx-conventions';
 import { join, resolve } from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
-import { hugeNxVersion } from '@huge-nx/devkit';
+import { hugeNxVersion, isVerbose } from '@huge-nx/devkit';
 import { output } from 'create-nx-workspace/src/utils/output';
 import { projectTypeGeneratorInternal } from '../project-type/generator';
 
@@ -12,15 +12,21 @@ async function generateWorkspaceNodes(nxWorkspace: HugeNxWorkspace, tree: Tree, 
   for (const [nodeName, nodeValue] of Object.entries(nxWorkspace)) {
     // if a parent folder, call recursively
     if (typeof nodeValue !== 'string' && !instanceOfHugeNxNodeWithExtraOptions(nodeValue)) {
-      await generateWorkspaceNodes(nodeValue, tree, directory ? `${directory}/${nodeName}` : nodeName);
+      await generateWorkspaceNodes(nodeValue, tree, nodeName);
       continue;
     }
     const projectType = instanceOfHugeNxNodeWithExtraOptions(nodeValue) ? nodeValue.projectType : nodeValue;
 
     const nodeOptionsByGenerator = instanceOfHugeNxNodeWithExtraOptions(nodeValue) ? nodeValue.options : {};
-    const dir = `${directory}/${nodeName}`;
+    const dir = directory ? `${directory}/${nodeName}` : nodeName;
 
     const name = dir.replace(/\//g, '-').split('-').slice(1).join('-');
+
+    if (isVerbose()) {
+      output.log({
+        title: `Generating ${nodeName} in ${dir} with options ${JSON.stringify(nodeOptionsByGenerator)}`,
+      });
+    }
 
     await projectTypeGeneratorInternal(tree, { name, directory: dir, projectType, extraOptionsByGenerator: nodeOptionsByGenerator });
   }

@@ -14,6 +14,7 @@ describe('huge-angular-full-stack e2e', () => {
   });
 
   afterEach(() => {
+    console.log(`Remove workspace ${wsCwd}`);
     rmSync(wsCwd, {
       recursive: true,
       force: true,
@@ -26,10 +27,4 @@ describe('huge-angular-full-stack e2e', () => {
     const results = runCommand(`nx build hotel-app`, wsCwd);
     expect(stripAnsi(results)).toContain(`Successfully ran target build for project hotel-app`);
   });
-
-  // test with file
-  // test with example name
-  // test wth nx previous nx version
-  // test with native create nx workspace parameter
-  // test with another package manager
 });

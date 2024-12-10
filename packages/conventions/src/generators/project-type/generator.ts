@@ -4,7 +4,7 @@ import { GeneratorOptions, OptionsByGenerator } from '../../types/huge-nx-conven
 import { output } from 'create-nx-workspace/src/utils/output';
 import * as process from 'node:process';
 import { installNxPlugin } from '../../utils/nx-plugins.util';
-import { getPmc, objectToInlineArgs } from '@huge-nx/devkit';
+import { getPmc, objectToInlineArgs, workspaceNxVersion } from '@huge-nx/devkit';
 import { execSync } from 'node:child_process';
 import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions.util';
 import { join } from 'node:path';
@@ -54,11 +54,12 @@ export async function projectTypeGeneratorInternal(tree: Tree, options: ProjectT
 
   // execute all generators sequentially
   for (const { generator, options } of projectTypeGenerators) {
-    const dir = `${directory}/${name}`;
-
     const generatorDefaultOptions = defaultGenerators?.[generator] ?? {};
     const projectTypeDefaultOptions = options ?? {};
-    const directoryOptions = { name, directory: dir };
+    output.log({
+      title: `NxVersion ${workspaceNxVersion()}`,
+    });
+    const directoryOptions = { name, directory, ...(workspaceNxVersion() < 20 ? { projectNameAndRootFormat: 'as-provided' } : {}) };
     const extraOptions = extraOptionsByGenerator?.[generator] ?? {};
 
     const allOptions = {
