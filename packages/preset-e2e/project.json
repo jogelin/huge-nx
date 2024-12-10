@@ -1,8 +1,0 @@
-{
-  "name": "huge-nx-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "packages/preset-e2e/src",
-  "implicitDependencies": ["huge-nx-conventions"],
-  "targets": {}
-}
