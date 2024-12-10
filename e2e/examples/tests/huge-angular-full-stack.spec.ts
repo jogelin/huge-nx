@@ -1,30 +1,36 @@
 import { rmSync } from 'node:fs';
-import { join } from 'node:path';
-import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import { createHugeNxWorkspace, getWsCwd, getWsName, runCommand, stripAnsi } from '@huge-nx/e2e-utils';
 
 describe('huge-angular-full-stack e2e', () => {
-  const conventionsFile = join(workspaceRoot, 'examples', 'huge-angular-full-stack.conventions.ts');
+  const conventionsName = 'huge-angular-full-stack';
   let wsName: string;
   let wsCwd: string;
 
   beforeEach(() => {
-    wsName = getWsName(conventionsFile);
+    wsName = getWsName(conventionsName);
     wsCwd = getWsCwd(wsName);
   });
 
-  afterEach(() => {
-    console.log(`Remove workspace ${wsCwd}`);
-    rmSync(wsCwd, {
-      recursive: true,
-      force: true,
-    });
+  afterEach((context) => {
+    if (context.task.result.state === 'pass') {
+      console.log(`Remove workspace ${wsCwd}`);
+      rmSync(wsCwd, {
+        recursive: true,
+        force: true,
+      });
+    } else {
+      console.log(`Test failed - Workspace content at ${wsCwd}:`);
+      runCommand('ls -la', wsCwd);
+    }
   });
 
   it('should build successfully', async () => {
-    const createWsOutput = createHugeNxWorkspace(wsName, conventionsFile);
-    console.log(createWsOutput);
-    const results = runCommand(`nx build hotel-app`, wsCwd);
-    expect(stripAnsi(results)).toContain(`Successfully ran target build for project hotel-app`);
+    createHugeNxWorkspace(wsName, conventionsName);
+
+    const resultApp = runCommand(`nx build hotel-app`, wsCwd);
+    expect(stripAnsi(resultApp)).toContain(`Successfully ran target build for project hotel-app`);
+
+    const resultLib = runCommand(`nx build guest-data-access`, wsCwd);
+    expect(stripAnsi(resultLib)).toContain(`Successfully ran target build for project guest-data-access`);
   });
 });

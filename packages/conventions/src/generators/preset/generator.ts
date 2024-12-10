@@ -10,21 +10,22 @@ import { projectTypeGeneratorInternal } from '../project-type/generator';
 
 async function generateWorkspaceNodes(nxWorkspace: HugeNxWorkspace, tree: Tree, directory?: string): Promise<void> {
   for (const [nodeName, nodeValue] of Object.entries(nxWorkspace)) {
+    const dir = directory ? `${directory}/${nodeName}` : nodeName;
+
     // if a parent folder, call recursively
     if (typeof nodeValue !== 'string' && !instanceOfHugeNxNodeWithExtraOptions(nodeValue)) {
-      await generateWorkspaceNodes(nodeValue, tree, nodeName);
+      await generateWorkspaceNodes(nodeValue, tree, dir);
       continue;
     }
     const projectType = instanceOfHugeNxNodeWithExtraOptions(nodeValue) ? nodeValue.projectType : nodeValue;
 
     const nodeOptionsByGenerator = instanceOfHugeNxNodeWithExtraOptions(nodeValue) ? nodeValue.options : {};
-    const dir = directory ? `${directory}/${nodeName}` : nodeName;
 
-    const name = dir.replace(/\//g, '-').split('-').slice(1).join('-');
+    const name = dir.split('/').slice(1).join('-');
 
     if (isVerbose()) {
       output.log({
-        title: `Generating ${nodeName} in ${dir} with options ${JSON.stringify(nodeOptionsByGenerator)}`,
+        title: `Generating ${name} in ${dir} with options ${JSON.stringify(nodeOptionsByGenerator)}`,
       });
     }
 
