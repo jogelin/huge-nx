@@ -27,10 +27,10 @@ describe('huge-angular-full-stack e2e', () => {
   it('should build successfully', async () => {
     createHugeNxWorkspace(wsName, conventionsName);
 
-    const resultApp = runCommand(`nx build hotel-app`, wsCwd);
+    const resultApp = runCommand(`nx build hotel-app --skip-sync`, wsCwd);
     expect(stripAnsi(resultApp)).toContain(`Successfully ran target build for project hotel-app`);
 
-    const resultLib = runCommand(`nx build guest-data-access`, wsCwd);
+    const resultLib = runCommand(`nx build guest-data-access --skip-sync`, wsCwd);
     expect(stripAnsi(resultLib)).toContain(`Successfully ran target build for project guest-data-access`);
   });
 });

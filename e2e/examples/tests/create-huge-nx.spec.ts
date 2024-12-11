@@ -29,7 +29,7 @@ describe('create-huge-nx e2e', () => {
   it('with conventions file path', async () => {
     createHugeNxWorkspace(wsName, conventionsFile);
 
-    const results = runCommand(`nx build my-app`, wsCwd);
+    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
     expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
   });
 
@@ -40,14 +40,14 @@ describe('create-huge-nx e2e', () => {
 
     createHugeNxWorkspace(wsName, conventionsName);
 
-    const results = runCommand(`nx build my-app`, wsCwd);
+    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
     expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
   });
 
   it('with previous nx version', async () => {
     createHugeNxWorkspace(wsName, conventionsFile, { nxVersion: '19' });
 
-    const results = runCommand(`nx build my-app`, wsCwd);
+    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
     expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
 
     expect(readFileSync(`${wsCwd}/package.json`, { encoding: 'utf-8' })).toContain(`"nx": "19.`);
@@ -56,7 +56,7 @@ describe('create-huge-nx e2e', () => {
   it('with native create-nx-workspace defaultBase parameter', async () => {
     createHugeNxWorkspace(wsName, conventionsFile, { defaultBase: 'develop' });
 
-    const results = runCommand(`nx build my-app`, wsCwd);
+    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
     expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
 
     expect(readFileSync(`${wsCwd}/nx.json`, { encoding: 'utf-8' })).toContain(`"defaultBase": "develop"`);
@@ -65,7 +65,7 @@ describe('create-huge-nx e2e', () => {
   it('with native create-nx-workspace packageManager parameter', async () => {
     createHugeNxWorkspace(wsName, conventionsFile, { packageManager: 'pnpm' });
 
-    const results = runCommand(`nx build my-app`, wsCwd);
+    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
     expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
 
     expect(existsSync(`${wsCwd}/pnpm-lock.yaml`)).toBe(true);
