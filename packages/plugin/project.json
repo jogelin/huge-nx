@@ -1,0 +1,41 @@
+{
+  "name": "huge-nx-plugin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/plugin/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/plugin",
+        "main": "packages/plugin/src/index.ts",
+        "tsConfig": "packages/plugin/tsconfig.lib.json",
+        "assets": [
+          "packages/plugin/*.md",
+          {
+            "input": "./packages/plugin/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
+}

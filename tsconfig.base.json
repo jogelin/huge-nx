@@ -18,7 +18,8 @@
     "paths": {
       "@huge-nx/conventions": ["packages/conventions/src/index.ts"],
       "@huge-nx/devkit": ["packages/devkit/src/index.ts"],
-      "@huge-nx/e2e-utils": ["e2e/utils/index.ts"]
+      "@huge-nx/e2e-utils": ["e2e/utils/index.ts"],
+      "@huge-nx/huge-nx-plugin": ["packages/plugin/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
