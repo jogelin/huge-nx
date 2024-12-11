@@ -40,7 +40,7 @@
   },
   "release": {
     "version": {
-      "preVersionCommand": "pnpm dlx nx run-many -t build --skip-nx-cache",
+      "preVersionCommand": "pnpm nx run-many -t build --skip-nx-cache",
       "conventionalCommits": true
     },
     "changelog": {
