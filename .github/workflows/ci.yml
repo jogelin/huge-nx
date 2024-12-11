@@ -50,6 +50,6 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      - run: pnpm exec nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
-      - run: pnpm exec nx-cloud record -- nx format:check
+      - run: pnpm dlx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
+      - run: pnpm dlx nx-cloud record -- nx format:check
       - run: pnpm exec nx affected -t lint test build e2e
