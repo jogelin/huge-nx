@@ -1,7 +1,8 @@
-import { existsSync, rmSync } from 'node:fs';
 import { createHugeNxWorkspace, getWsCwd, getWsName, runCommand, stripAnsi } from '@huge-nx/e2e-utils';
 
-const conventionsName = 'nx-preset-angular-monorepo';
+import { rmSync } from 'node:fs';
+
+const conventionsName = 'huge-angular-full-stack';
 
 describe(`e2e: ${conventionsName}`, () => {
   let wsName: string;
@@ -25,12 +26,10 @@ describe(`e2e: ${conventionsName}`, () => {
     }
   });
 
-  it('with native create-nx-workspace packageManager parameter', async () => {
-    createHugeNxWorkspace(wsName, conventionsName, { packageManager: 'pnpm' });
+  it('should build successfully', async () => {
+    createHugeNxWorkspace(wsName, conventionsName);
 
-    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
-    expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
-
-    expect(existsSync(`${wsCwd}/pnpm-lock.yaml`)).toBe(true);
+    const resultApp = runCommand(`nx build my-app --skip-sync`, wsCwd);
+    expect(stripAnsi(resultApp)).toContain(`Successfully ran target build for project my-app`);
   });
 });

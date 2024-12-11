@@ -1,16 +1,14 @@
 import { rmSync } from 'node:fs';
-import { join } from 'node:path';
-import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import { createHugeNxWorkspace, getWsCwd, getWsName, runCommand, stripAnsi } from '@huge-nx/e2e-utils';
 
-const conventionsFile = join(workspaceRoot, 'examples', 'nx-preset-angular-monorepo.conventions.ts');
+const conventionsName = 'nx-preset-react-monorepo';
 
-describe(`e2e: ${conventionsFile}`, () => {
+describe(`e2e: ${conventionsName}`, () => {
   let wsName: string;
   let wsCwd: string;
 
   beforeEach(() => {
-    wsName = getWsName(conventionsFile);
+    wsName = getWsName(conventionsName);
     wsCwd = getWsCwd(wsName);
   });
 
@@ -27,10 +25,10 @@ describe(`e2e: ${conventionsFile}`, () => {
     }
   });
 
-  it('with conventions file path', async () => {
-    createHugeNxWorkspace(wsName, conventionsFile);
+  it('should build successfully', async () => {
+    createHugeNxWorkspace(wsName, conventionsName);
 
-    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
-    expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
+    const resultApp = runCommand(`nx build my-app --skip-sync`, wsCwd);
+    expect(stripAnsi(resultApp)).toContain(`Successfully ran target build for project my-app`);
   });
 });

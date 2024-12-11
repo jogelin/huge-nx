@@ -1,15 +1,14 @@
 import { readFileSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
-import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import { createHugeNxWorkspace, getWsCwd, getWsName, runCommand, stripAnsi } from '@huge-nx/e2e-utils';
 
-describe('create-huge-nx e2e', () => {
-  const conventionsFile = join(workspaceRoot, 'examples', 'nx-preset-angular-monorepo.conventions.ts');
+const conventionsName = 'nx-preset-angular-monorepo';
+
+describe(`e2e: ${conventionsName}`, () => {
   let wsName: string;
   let wsCwd: string;
 
   beforeEach(() => {
-    wsName = getWsName(conventionsFile);
+    wsName = getWsName(conventionsName);
     wsCwd = getWsCwd(wsName);
   });
 
@@ -27,7 +26,7 @@ describe('create-huge-nx e2e', () => {
   });
 
   it('with native create-nx-workspace defaultBase parameter', async () => {
-    createHugeNxWorkspace(wsName, conventionsFile, { defaultBase: 'develop' });
+    createHugeNxWorkspace(wsName, conventionsName, { defaultBase: 'develop' });
 
     const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
     expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);

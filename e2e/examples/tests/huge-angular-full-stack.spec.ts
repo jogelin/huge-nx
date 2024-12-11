@@ -1,8 +1,10 @@
-import { rmSync } from 'node:fs';
 import { createHugeNxWorkspace, getWsCwd, getWsName, runCommand, stripAnsi } from '@huge-nx/e2e-utils';
 
-describe('huge-angular-full-stack e2e', () => {
-  const conventionsName = 'huge-angular-full-stack';
+import { rmSync } from 'node:fs';
+
+const conventionsName = 'huge-angular-full-stack';
+
+describe(`e2e: ${conventionsName}`, () => {
   let wsName: string;
   let wsCwd: string;
 

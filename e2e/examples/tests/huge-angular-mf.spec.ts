@@ -1,8 +1,9 @@
 import { rmSync } from 'node:fs';
 import { createHugeNxWorkspace, getWsCwd, getWsName, runCommand, stripAnsi } from '@huge-nx/e2e-utils';
 
-describe('create-huge-nx e2e', () => {
-  const conventionsName = 'nx-preset-angular-monorepo';
+const conventionsName = 'huge-angular-mf';
+
+describe(`e2e: ${conventionsName}`, () => {
   let wsName: string;
   let wsCwd: string;
 
@@ -24,10 +25,13 @@ describe('create-huge-nx e2e', () => {
     }
   });
 
-  it('with conventions example name', async () => {
+  it('should build successfully', async () => {
     createHugeNxWorkspace(wsName, conventionsName);
 
-    const results = runCommand(`nx build my-app --skip-sync`, wsCwd);
-    expect(stripAnsi(results)).toContain(`Successfully ran target build for project my-app`);
+    const resultApp = runCommand(`nx build hotel-app --skip-sync`, wsCwd);
+    expect(stripAnsi(resultApp)).toContain(`Successfully ran target build for project hotel-app`);
+
+    const resultLib = runCommand(`nx build guest-data-access --skip-sync`, wsCwd);
+    expect(stripAnsi(resultLib)).toContain(`Successfully ran target build for project guest-data-access`);
   });
 });
