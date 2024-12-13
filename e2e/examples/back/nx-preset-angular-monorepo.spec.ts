@@ -2,7 +2,7 @@ import { createHugeNxWorkspace, getWsCwd, getWsName, runCommand, stripAnsi } fro
 
 import { rmSync } from 'node:fs';
 
-const conventionsName = 'huge-angular-full-stack';
+const conventionsName = 'nx-preset-angular-monorepo';
 
 describe(`e2e: ${conventionsName}`, () => {
   let wsName: string;
