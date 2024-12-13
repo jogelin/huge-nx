@@ -20,7 +20,7 @@ async function runGenerator(generator: string, options: GeneratorOptions) {
     title: `Apply generator ${generator} on project ${options['name']}`,
     bodyLines: [generatorCmd],
   });
-  execSync(generatorCmd, { stdio: 'inherit' });
+  execSync(generatorCmd, { stdio: 'pipe' });
 }
 
 function normalizeOptions(options: ProjectTypeGeneratorExtraSchema): ProjectTypeGeneratorExtraSchema {
