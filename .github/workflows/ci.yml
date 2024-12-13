@@ -16,7 +16,8 @@ env:
   NX_POWERPACK_LICENSE: ${{ secrets.NX_POWERPACK_LICENSE }}
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
   NX_PERF_LOGGING: '${{ secrets.ACTIONS_STEP_DEBUG || false }}'
-  NX_VERBOSE_LOGGING: '${{ secrets.ACTIONS_STEP_DEBUG || false }}'
+#  NX_VERBOSE_LOGGING: '${{ secrets.ACTIONS_STEP_DEBUG || false }}'
+  NX_VERBOSE_LOGGING: 'true'
 
 jobs:
   main:
@@ -59,5 +60,4 @@ jobs:
 
       - run: pnpm nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
       - run: pnpm nx-cloud record -- nx format:check
-      - run: pnpm nx affected -t lint test build e2e --verbose
-        shell: bash
+      - run: pnpm nx affected -t lint test build e2e
