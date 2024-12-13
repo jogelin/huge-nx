@@ -50,6 +50,14 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
+      - name: Debug Environment
+        run: |
+          pwd
+          whoami
+          ls -la /bin
+          env
+
       - run: pnpm nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
       - run: pnpm nx-cloud record -- nx format:check
       - run: pnpm nx affected -t lint test build e2e
+        shell: bash
