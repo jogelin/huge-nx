@@ -52,4 +52,4 @@ jobs:
 
       - run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
 #      - run: pnpm nx-cloud record -- nx format:check
-      - run: npx nx affected -t lint test build e2e
+      - run: pnpm nx affected -t lint test build e2e
