@@ -50,8 +50,10 @@ export function uniq(prefix: string): string {
 }
 
 export function runCommand(command: string, cwd: string): string {
+  console.log(`Running command: ${command}`);
+  let result = '';
   try {
-    const result = execSync(`${command}${isVerbose() ? ' --verbose' : ''}`, {
+    result = execSync(`${command}${isVerbose() ? ' --verbose' : ''}`, {
       cwd,
       stdio: 'pipe',
       env: {
@@ -75,7 +77,9 @@ export function runCommand(command: string, cwd: string): string {
 
     return result;
   } catch (e) {
-    console.error(`Original command: ${command}`, `${e.stdout}\n\n${e.stderr}`);
+    console.error(`[ERROR]: Command: ${command}`, `${e.stdout}\n\n${e.stderr}`);
+    console.error(result);
+    console.error(e);
     throw e;
   }
 }

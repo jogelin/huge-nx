@@ -20,9 +20,6 @@ describe(`e2e: ${conventionsName}`, () => {
         recursive: true,
         force: true,
       });
-    } else {
-      console.log(`Test failed - Workspace content at ${wsCwd}:`);
-      runCommand('ls -la', wsCwd);
     }
   });
 
