@@ -53,7 +53,7 @@ export function runCommand(command: string, cwd: string): string {
   try {
     const result = execSync(`${command}${isVerbose() ? ' --verbose' : ''}`, {
       cwd,
-      stdio: 'inherit',
+      stdio: 'pipe',
       env: {
         ...process.env,
         CI: 'true',
