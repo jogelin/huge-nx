@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install packages
-        if: steps.cache-modules.outputs.cache-hit != 'true'
+        # if: steps.cache-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
 
       - uses: nrwl/nx-set-shas@v4
