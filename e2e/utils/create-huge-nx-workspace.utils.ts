@@ -58,11 +58,7 @@ export function runCommand(command: string, cwd: string): string {
       stdio: 'pipe',
       env: {
         ...process.env,
-        CI: 'true',
         npm_config_registry: 'http://localhost:4873',
-        NX_DAEMON: 'false',
-        NX_SKIP_NX_CACHE: 'false',
-        FORCE_COLOR: 'false',
       },
       encoding: 'utf-8',
     });
