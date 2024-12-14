@@ -79,7 +79,7 @@ async function main(parsedArgs: yargs.Arguments<Arguments>) {
     bodyLines: [createNxWorkspaceCmd],
   });
 
-  execSync(createNxWorkspaceCmd, { stdio: 'pipe', env: { NX_DAEMON: 'false' } });
+  execSync(createNxWorkspaceCmd, { stdio: 'pipe', env: { ...process.env, NX_DAEMON: 'false' } });
 
   output.log({
     title: `Successfully applied preset: ${parsedArgs['preset']}`,

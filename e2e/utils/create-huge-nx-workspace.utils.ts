@@ -33,7 +33,7 @@ export function createHugeNxWorkspace(
 }
 
 // export const tmpE2eRoot = isCI ? dirSync({ prefix: 'huge-nx-e2e-' }).name : join(`${workspaceRoot}/tmp/huge-nx-e2e`);
-export const tmpE2eRoot = join(`${workspaceRoot}/tmp/huge-nx-e2e`);
+export const tmpE2eRoot = isCI ? dirSync({ prefix: 'huge-nx-e2e-' }).name : join(`${workspaceRoot}/tmp/huge-nx-e2e`);
 
 export const getWsName = (hugeNxConventions: string, nxVersion = 'latest') => {
   const wsName = hugeNxConventions.split('/')?.pop()?.replace('.conventions.ts', `-${nxVersion}`);
