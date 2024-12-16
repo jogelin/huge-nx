@@ -3,11 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create:huge-angular-mf": "npx ts-node ./tools/scripts/publish-local.ts huge-angular-mf",
-    "create:huge-angular-full-stack": "npx ts-node ./tools/scripts/publish-local.ts huge-angular-full-stack",
-    "create:nx-preset-angular-monorepo": "npx ts-node ./tools/scripts/publish-local.ts  nx-preset-angular-monorepo",
-    "create:nx-preset-angular-monorepo-v18": "npx ts-node ./tools/scripts/publish-local.ts nx-preset-angular-monorepo-v18",
-    "create:nx-preset-react-monorepo": "npx ts-node ./tools/scripts/publish-local.ts nx-preset-react-monorepo"
+    "dev": "node ./tools/scripts/publish-local.mjs"
   },
   "private": true,
   "repository": {
