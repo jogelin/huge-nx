@@ -1,22 +1,22 @@
-import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry';
-import { releasePublish, releaseVersion } from 'nx/release';
+import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry.js';
+import { releasePublish, releaseVersion } from 'nx/release/index.js';
 import { execSync } from 'node:child_process';
-import { rmSync } from 'node:fs';
+import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { exists } from '@nx/plugin/testing.js';
 
 // Related to the target generated in the root project.json
 const localRegistryTarget = '@huge-nx/source:local-registry';
 
+const devTmpRepository = join(process.cwd(), 'tmp', 'huge-nx-dev');
+
+if (!exists(devTmpRepository)) {
+  mkdirSync(devTmpRepository, { recursive: true });
+}
+
 // Callback used to stop Verdaccio process
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 let stopLocalRegistry = () => {};
-
-const hugeNxConventionsArgv = process.argv[2];
-const nxVersion = process.argv[3] ?? 'latest';
-const workspaceName = hugeNxConventionsArgv.split('/')?.pop()?.replace('.conventions.ts', `-${nxVersion}`);
-if (!hugeNxConventionsArgv || !workspaceName) {
-  throw new Error('Provide the conventions name like npx ts-node ./tools/scripts/publish-local.ts huge-angular-monorep');
-}
 
 (async () => {
   try {
@@ -46,15 +46,9 @@ if (!hugeNxConventionsArgv || !workspaceName) {
     firstRelease: true,
   });
 
-  rmSync(workspaceName, { force: true, recursive: true });
-
-  const createCmd = `npx --yes create-huge-nx@latest ${workspaceName} --hugeNxConventions=${hugeNxConventionsArgv} --nxVersion ${nxVersion} --nxCloud skip --interactive false --verbose`;
-
-  console.log(createCmd);
-
-  execSync(createCmd, {
+  execSync(`npx create-huge-nx@latest`, {
     stdio: 'inherit',
-    cwd: join(process.cwd(), '..'),
+    cwd: devTmpRepository,
     env: {
       ...process.env,
       npm_config_registry: 'http://localhost:4873',
@@ -63,7 +57,7 @@ if (!hugeNxConventionsArgv || !workspaceName) {
     },
   });
 
-  stopLocalRegistry();
+  // stopLocalRegistry();
 
   const exitStatus = Object.values(publishStatus).reduce((acc, result) => result.code + acc, 0);
   process.exit(exitStatus);
