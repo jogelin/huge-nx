@@ -29,7 +29,7 @@ export function createHugeNxWorkspace(
     mkdirSync(tmpE2eRoot, { recursive: true });
   }
 
-  return runCommand(command, tmpE2eRoot);
+  return runCommand(command, tmpE2eRoot, 'inherit');
 }
 
 // export const tmpE2eRoot = isCI ? dirSync({ prefix: 'huge-nx-e2e-' }).name : join(`${workspaceRoot}/tmp/huge-nx-e2e`);
@@ -49,13 +49,13 @@ export function uniq(prefix: string): string {
   return `${prefix}-${randomSevenDigitNumber}`;
 }
 
-export function runCommand(command: string, cwd: string): string {
+export function runCommand(command: string, cwd: string, stdio: 'inherit' | 'pipe' = 'pipe'): string {
   console.log(`Running command: ${command}`);
   let result = '';
   try {
     result = execSync(`${command}${isVerbose() ? ' --verbose' : ''}`, {
       cwd,
-      stdio: 'inherit',
+      stdio,
       env: {
         ...process.env,
         npm_config_registry: 'http://localhost:4873',
@@ -66,7 +66,7 @@ export function runCommand(command: string, cwd: string): string {
     if (isVerbose()) {
       output.log({
         title: `Command: ${command}`,
-        bodyLines: [result],
+        bodyLines: [result || 'No output'],
         color: 'green',
       });
     }
