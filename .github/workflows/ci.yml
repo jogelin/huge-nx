@@ -20,36 +20,54 @@ env:
 
 jobs:
   main:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    name: Nx Cloud - Main Job
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.15
+    with:
+      main-branch-name: main
+      number-of-agents: 3
+      init-commands: |
+        pnpm exec nx-cloud start-ci-run --stop-agents-after="e2e" --agent-count=3
+      parallel-commands: |
+        pnpm exec nx-cloud record -- pnpm exec nx format:check
+      parallel-commands-on-agents: |
+        pnpm exec nx affected --target lint build test e2e
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-
-      - name: Cache node_modules
-        id: cache-modules
-        uses: actions/cache@v4
-        with:
-          lookup-only: true
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Install packages
-        # if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-
-      - uses: nrwl/nx-set-shas@v4
-
-      - run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
-#      - run: pnpm nx-cloud record -- nx format:check
-      - run: pnpm nx affected -t lint test build e2e
+  agents:
+    name: Nx Cloud - Agents
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.15
+    with:
+      number-of-agents: 3
+#  main:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#
+#      - uses: pnpm/action-setup@v4
+#        with:
+#          version: ${{ env.PNPM_VERSION }}
+#          run_install: false
+#
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: ${{ env.NODE_VERSION }}
+#          cache: 'pnpm'
+#
+#      - name: Cache node_modules
+#        id: cache-modules
+#        uses: actions/cache@v4
+#        with:
+#          lookup-only: true
+#          path: '**/node_modules'
+#          key: ${{ runner.os }}-modules-${{ env.NODE_VERSION }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+#
+#      - name: Install packages
+#        # if: steps.cache-modules.outputs.cache-hit != 'true'
+#        run: pnpm install --frozen-lockfile
+#
+#      - uses: nrwl/nx-set-shas@v4
+#
+#      - run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after=e2e
+##      - run: pnpm nx-cloud record -- nx format:check
+#      - run: pnpm nx affected -t lint test build e2e
