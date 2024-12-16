@@ -30,7 +30,7 @@ jobs:
       main-branch-name: main
       number-of-agents: 3
       init-commands: |
-        pnpm exec nx-cloud start-ci-run --stop-agents-after="e2e" --agent-count=3 --distribute-on="manual"
+        pnpm exec nx-cloud start-ci-run --stop-agents-after="e2e" --agent-count=3 --no-distribution --distribute-on="manual"
       parallel-commands: |
         pnpm exec nx-cloud record -- pnpm exec nx format:check
       parallel-commands-on-agents: |
