@@ -180,10 +180,10 @@ async function determineConventions(parsedArgs: yargs.Arguments<Arguments>): Pro
     (await enquirer
       .prompt<{ hugeNxConventions: string }>([
         {
-          type: 'input',
+          type: 'select',
           name: 'hugeNxConventions',
           message: `Choose one of these existing conventions OR specify a distant file by using --hugeNxConventions=./my-huge-nx.conventions.ts`,
-          initial: './huge-nx.conventions.json',
+          choices: [...conventionExamples],
         },
       ])
       .then((reply) => reply.hugeNxConventions));
