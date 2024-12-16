@@ -29,6 +29,7 @@ export function createHugeNxWorkspace(
     mkdirSync(tmpE2eRoot, { recursive: true });
   }
 
+  // Have to specify inherit here because the command is run in a child process
   return runCommand(command, tmpE2eRoot, 'inherit');
 }
 
