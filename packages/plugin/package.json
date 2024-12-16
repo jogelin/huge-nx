@@ -1,6 +1,6 @@
 {
   "name": "@huge-nx/plugin",
-  "version": "0.0.0-e2e",
+  "version": "0.6.0",
   "private": false,
   "repository": {
     "type": "git",
