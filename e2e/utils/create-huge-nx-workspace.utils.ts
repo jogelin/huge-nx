@@ -55,7 +55,7 @@ export function runCommand(command: string, cwd: string): string {
   try {
     result = execSync(`${command}${isVerbose() ? ' --verbose' : ''}`, {
       cwd,
-      stdio: 'pipe',
+      stdio: 'inherit',
       env: {
         ...process.env,
         npm_config_registry: 'http://localhost:4873',
