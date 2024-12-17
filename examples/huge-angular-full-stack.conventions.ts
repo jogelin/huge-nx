@@ -23,6 +23,9 @@ export default defineConventions({
     '@nx/js:lib': {
       bundler: 'swc',
     },
+    '@nx/storybook:configuration': {
+      interactionTests: 'true',
+    },
   },
   projectTypes: {
     'global:angular:app': {
