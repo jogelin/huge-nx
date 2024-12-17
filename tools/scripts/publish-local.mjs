@@ -46,7 +46,7 @@ let stopLocalRegistry = () => {};
     firstRelease: true,
   });
 
-  execSync(`npx create-huge-nx@latest`, {
+  execSync(`npx --yes create-huge-nx@latest org-${Date.now()} --nxCloud=skip`, {
     stdio: 'inherit',
     cwd: devTmpRepository,
     env: {
@@ -54,6 +54,8 @@ let stopLocalRegistry = () => {};
       npm_config_registry: 'http://localhost:4873',
       NX_DAEMON: 'false',
       NX_SKIP_NX_CACHE: 'false',
+      NX_PERF_LOGGING: 'true',
+      NX_VERBOSE_LOGGING: 'true',
     },
   });
 
