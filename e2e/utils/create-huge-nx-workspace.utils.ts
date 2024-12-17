@@ -74,9 +74,11 @@ export function runCommand(command: string, cwd: string, stdio: 'inherit' | 'pip
 
     return result;
   } catch (e) {
-    console.error(`[ERROR]: Command: ${command}`, `${e.stdout}\n\n${e.stderr}`);
+    console.error(`[ERROR]: runCommand START -----------------------------`);
+    console.error(command);
     console.error(result);
     console.error(e);
+    console.error(`[ERROR]: runCommand END -----------------------------`);
     throw e;
   }
 }
