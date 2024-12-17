@@ -1,3 +1,25 @@
+## 0.8.0 (2024-12-17)
+
+### 🚀 Features
+
+- **generator:** add perf logs ([9eed01f](https://github.com/jogelin/huge-nx/commit/9eed01f))
+
+### 🩹 Fixes
+
+- **ci:** fix nx-cloud not found ([cd1d5e0](https://github.com/jogelin/huge-nx/commit/cd1d5e0))
+- **create-nx-workspace:** fix create-huge-nx- prompt ([6692239](https://github.com/jogelin/huge-nx/commit/6692239))
+- **e2e:** improve e2e utils logs ([868a2c5](https://github.com/jogelin/huge-nx/commit/868a2c5))
+- **examples:** fix examples generators ([b0cfe14](https://github.com/jogelin/huge-nx/commit/b0cfe14))
+- **examples:** fix examples ([a18a969](https://github.com/jogelin/huge-nx/commit/a18a969))
+- **lint:** fix lint ([aca91db](https://github.com/jogelin/huge-nx/commit/aca91db))
+- **plugin:** Fix huge nx plugin release config ([5583ee6](https://github.com/jogelin/huge-nx/commit/5583ee6))
+- **plugin:** Fix huge nx plugin release config ([296fa1f](https://github.com/jogelin/huge-nx/commit/296fa1f))
+- **tools:** Fix publish local ([5ff3de1](https://github.com/jogelin/huge-nx/commit/5ff3de1))
+
+### ❤️ Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.7.2 (2024-12-16)
 
 This was a version bump only, there were no code changes.
