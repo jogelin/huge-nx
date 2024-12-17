@@ -9,10 +9,15 @@ import { execSync } from 'node:child_process';
 import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions.util';
 import { join } from 'node:path';
 import { minimatch } from 'minimatch';
+import { performance } from 'node:perf_hooks';
+
+require('nx/src/utils/perf-logging');
 
 type ProjectTypeGeneratorExtraSchema = ProjectTypeGeneratorSchema & { extraOptionsByGenerator?: OptionsByGenerator };
 
 async function runGenerator(generator: string, options: GeneratorOptions) {
+  const loadConventionsStart = performance.mark(`runGenerator:start:${generator}`);
+
   installNxPlugin(generator.split(':')[0]);
 
   const generatorCmd = `${getPmc().exec} nx g ${generator} ${objectToInlineArgs(options)}`;
@@ -20,7 +25,11 @@ async function runGenerator(generator: string, options: GeneratorOptions) {
     title: `Apply generator ${generator} on project ${options['name']}`,
     bodyLines: [generatorCmd],
   });
-  execSync(generatorCmd, { stdio: 'pipe' });
+  execSync(generatorCmd, { stdio: 'inherit', env: { ...process.env } });
+
+  const loadConventionsEnd = performance.mark(`runGenerator:end:${generator}`);
+
+  performance.measure('runGenerator', loadConventionsStart.name, loadConventionsEnd.name);
 }
 
 function normalizeOptions(options: ProjectTypeGeneratorExtraSchema): ProjectTypeGeneratorExtraSchema {
@@ -28,6 +37,10 @@ function normalizeOptions(options: ProjectTypeGeneratorExtraSchema): ProjectType
 }
 
 export async function projectTypeGeneratorInternal(tree: Tree, options: ProjectTypeGeneratorExtraSchema) {
+  output.log({
+    title: `Generate Project Type: ${options.projectType}`,
+  });
+
   const hugeNxConventionsDest = join(tree.root, hugeNxConventionsFileName);
   const hugeNxConventions = await loadConventions(hugeNxConventionsDest);
 
