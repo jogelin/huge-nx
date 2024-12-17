@@ -25,10 +25,10 @@ describe(`e2e: ${conventionsName}`, () => {
   it('should build successfully', async () => {
     createHugeNxWorkspace(wsName, conventionsName);
 
-    const resultApp = runCommand(`nx build hotel-app --skip-sync`, wsCwd);
-    expect(stripAnsi(resultApp)).toContain(`Successfully ran target build for project hotel-app`);
+    const resultApp = runCommand(`nx build hotel-host --skip-sync`, wsCwd);
+    expect(stripAnsi(resultApp)).toContain(`Successfully ran target build for project hotel-host`);
 
-    const resultLib = runCommand(`nx build guest-data-access --skip-sync`, wsCwd);
-    expect(stripAnsi(resultLib)).toContain(`Successfully ran target build for project guest-data-access`);
+    const resultLib = runCommand(`nx build mf_room_maintenance_remote --skip-sync`, wsCwd);
+    expect(stripAnsi(resultLib)).toContain(`Successfully ran target build for project mf_room_maintenance_remote`);
   });
 });
