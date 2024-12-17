@@ -11,16 +11,34 @@ export default defineConventions({
       e2eTestRunner: 'playwright',
       inlineStyle: true,
       inlineTemplate: true,
+      ssr: false,
+    },
+    '@nx/angular:host': {
+      style: 'css',
+      linter: 'eslint',
+      unitTestRunner: 'jest',
+      e2eTestRunner: 'playwright',
+    },
+    '@nx/angular:remote': {
+      style: 'css',
+      linter: 'eslint',
+      unitTestRunner: 'jest',
+      e2eTestRunner: 'playwright',
     },
     '@nx/angular:library': {
+      style: 'css',
       linter: 'eslint',
       unitTestRunner: 'jest',
     },
     '@nx/angular:component': {
       style: 'css',
+      linter: 'eslint',
+      unitTestRunner: 'jest',
     },
     '@nx/js:lib': {
+      linter: 'eslint',
       bundler: 'swc',
+      unitTestRunner: 'jest',
     },
     '@nx/storybook:configuration': {
       interactionTests: 'true',
@@ -32,16 +50,12 @@ export default defineConventions({
       generators: [{ generator: '@nx/angular:application' }],
     },
     'mf:host:app': {
-      projectPattern: '*-app',
+      projectPattern: '*-host',
       generators: [{ generator: '@nx/angular:host', options: { addTailwind: true } }],
     },
     'mf:remote:app': {
-      projectPattern: 'mf-*-app',
+      projectPattern: 'mf_*_remote',
       generators: [{ generator: '@nx/angular:remote' }],
-    },
-    'backend:api': {
-      projectPattern: '*-api',
-      generators: [{ generator: '@nx/nest:application' }],
     },
     'global:angular:lib:data-access': {
       projectPattern: '*-data-access',
@@ -70,26 +84,25 @@ export default defineConventions({
   },
   workspace: {
     apps: {
-      'hotel-app': 'mf:host:app',
-      'mf-guest-services-app': {
+      'hotel-host': 'mf:host:app',
+      mf_guest_services_remote: {
         projectType: 'mf:remote:app',
         options: {
-          '@nx/angular:remote': { host: 'hotel-app' },
+          '@nx/angular:remote': { host: 'hotel-host' },
         },
       },
-      'mf-room-maintenance-app': {
+      mf_room_maintenance_remote: {
         projectType: 'mf:remote:app',
         options: {
-          '@nx/angular:remote': { host: 'hotel-app' },
+          '@nx/angular:remote': { host: 'hotel-host' },
         },
       },
-      'mf-event-management-app': {
+      mf_event_management_remote: {
         projectType: 'mf:remote:app',
         options: {
-          '@nx/angular:remote': { host: 'hotel-app' },
+          '@nx/angular:remote': { host: 'hotel-host' },
         },
       },
-      'hotel-api': 'backend:api',
       'admin-dashboard-app': 'global:angular:app',
     },
     libs: {

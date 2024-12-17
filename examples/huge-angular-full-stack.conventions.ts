@@ -12,16 +12,22 @@ export default defineConventions({
       e2eTestRunner: 'playwright',
       inlineStyle: true,
       inlineTemplate: true,
+      ssr: false,
     },
     '@nx/angular:library': {
+      style: 'css',
       linter: 'eslint',
       unitTestRunner: 'jest',
     },
     '@nx/angular:component': {
       style: 'css',
+      linter: 'eslint',
+      unitTestRunner: 'jest',
     },
     '@nx/js:lib': {
+      linter: 'eslint',
       bundler: 'swc',
+      unitTestRunner: 'jest',
     },
     '@nx/storybook:configuration': {
       interactionTests: 'true',
