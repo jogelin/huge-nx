@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "node ./tools/scripts/publish-local.mjs"
+    "dev": "pnpm dev:clear && node ./tools/scripts/publish-local.mjs",
+    "dev:clear": "rm -rf tmp/huge-nx-dev/*"
   },
   "private": true,
   "repository": {
