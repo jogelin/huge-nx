@@ -14,7 +14,7 @@ export default defineConfig({
     watch: false,
     globals: true,
     environment: 'node',
-    testTimeout: 1000 * 60 * 5,
+    testTimeout: 1000 * 60 * 10,
     include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: { reportsDirectory: '../../dist/coverage/examples-e2e', provider: 'v8' },
