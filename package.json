@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "nx": "nx",
     "dev": "pnpm dev:clear && node ./tools/scripts/publish-local.mjs",
     "dev:clear": "rm -rf tmp/huge-nx-dev/*"
   },
@@ -12,6 +13,7 @@
     "url": "https://github.com/jogelin/huge-nx"
   },
   "devDependencies": {
+    "glob": "^11.0.0",
     "@eslint/js": "^9.8.0",
     "@nx/devkit": "20.2.2",
     "@nx/eslint": "20.2.2",

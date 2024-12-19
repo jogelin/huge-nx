@@ -69,13 +69,7 @@
       },
       "include": ["packages/**"]
     },
-    {
-      "plugin": "@nx/vite/plugin",
-      "options": {
-        "testTargetName": "e2e"
-      },
-      "include": ["e2e/**"]
-    },
+    "./tools/plugins/e2e-atomizer.plugin.ts",
     {
       "plugin": "@nx/eslint/plugin",
       "options": {

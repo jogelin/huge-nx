@@ -4,17 +4,20 @@ import { calculateHashForCreateNodes, ConfigCache } from './cache-config.utils';
 import { isAttachedToProject } from './is-attached-to-project.util';
 import { ProjectConfiguration } from '@nx/devkit';
 
-export type GenerateConfig<T extends Record<string, unknown>> = (
+export type GenerateConfig<T extends Record<string, string | number | boolean>> = (
   projectRoot: string,
   filePath: string,
   options: T,
   context: CreateNodesContextV2
-) => Partial<ProjectConfiguration>;
+) => Partial<ProjectConfiguration> | Promise<Partial<ProjectConfiguration>>;
 export type WithProjectRoot<T> = (filePath: string, options: T, context: CreateNodesContextV2) => string;
 export type SkipIf<T> = (projectRoot: string, filePath: string, options: T, context: CreateNodesContextV2) => boolean;
 export type WithOptionsNormalizer<T> = (options: Partial<T>) => T;
 
-export type CreateNodesInternal<T extends Record<string, unknown>> = readonly [projectFilePattern: string, createNodesInternal: CreateNodesInternalFunction<T>];
+export type CreateNodesInternal<T extends Record<string, string | number | boolean>> = readonly [
+  projectFilePattern: string,
+  createNodesInternal: CreateNodesInternalFunction<T>
+];
 
 export type CreateNodesInternalFunction<T> = (
   filePath: string,
@@ -23,7 +26,7 @@ export type CreateNodesInternalFunction<T> = (
   configCache: ConfigCache
 ) => Promise<CreateNodesResult>;
 
-export function createNodesInternalBuilder<T extends Record<string, unknown>>(projectFilePattern: string, generateConfig: GenerateConfig<T>) {
+export function createNodesInternalBuilder<T extends Record<string, string | number | boolean>>(projectFilePattern: string, generateConfig: GenerateConfig<T>) {
   let withOptionsNormalizer: WithOptionsNormalizer<T>;
   let withProjectRoot: WithProjectRoot<T>;
   const skipIf: SkipIf<T>[] = [];
@@ -67,7 +70,7 @@ export function createNodesInternalBuilder<T extends Record<string, unknown>>(pr
 
             // add by default a tag for the
             const pluginTag = `nx-plugin:${context.pluginName}`;
-            const config = generateConfig(projectRoot, filePath, options, context);
+            const config = await generateConfig(projectRoot, filePath, options, context);
 
             configCache[hash] = {
               ...config,
