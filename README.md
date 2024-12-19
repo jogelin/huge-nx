@@ -9,7 +9,7 @@
 **Use existing HugeNx's conventions:**
 
 ```bash
-$ npx create-huge-nx my-monorepo-name                                                                                                                  
+$ npx create-huge-nx my-monorepo-name
 ```
 
 **Or provide your custom conventions:**
@@ -36,7 +36,8 @@ import { defineConventions } from '@huge-nx/conventions';
 export default defineConventions({
   version: '1.0',
   generators: {
-    '@nx/angular:application': { //<-- Generator Identifier
+    '@nx/angular:application': {
+      //<-- Generator Identifier
       linter: 'eslint', //<-- List of default options
       style: 'css',
       unitTestRunner: 'jest',
@@ -66,7 +67,8 @@ export default defineConventions({
     },
   },
   projectTypes: {
-    'global:angular:app': { //<-- Project Type Identifier
+    'global:angular:app': {
+      //<-- Project Type Identifier
       projectPattern: '*-app', //<-- Pattern matching your naming convention
       generators: [{ generator: '@nx/angular:application' }], //<-- List of generators used to generate that type of project
     },
@@ -82,7 +84,8 @@ export default defineConventions({
       projectPattern: '*-feature',
       generators: [{ generator: '@nx/angular:library' }],
     },
-    'global:angular:lib:ui:storybook': { //<-- This project type generates a library then a storybook configuration
+    'global:angular:lib:ui:storybook': {
+      //<-- This project type generates a library then a storybook configuration
       projectPattern: '*-ui',
       generators: [{ generator: '@nx/angular:library' }, { generator: '@nx/storybook:configuration', options: { uiFramework: '@storybook/angular' } }],
     },
@@ -91,29 +94,37 @@ export default defineConventions({
       generators: [{ generator: '@nx/js:lib', options: { bundler: 'swc' } }],
     },
   },
-  workspace: { //<-- The workspace is structured by folders and projects
-    apps: { //<-- Generates a folder apps
+  workspace: {
+    //<-- The workspace is structured by folders and projects
+    apps: {
+      //<-- Generates a folder apps
       'hotel-app': 'global:angular:app', //<-- Generates a project hotel-app by using the project type global:angular:app
-      'hotel-api': { //<-- Generates a project hotel-api by using the project type backend:api and extra options
+      'hotel-api': {
+        //<-- Generates a project hotel-api by using the project type backend:api and extra options
         projectType: 'backend:api',
         options: {
           '@nx/angular:remote': { frontendProject: 'hotel-app' },
         },
       },
     },
-    libs: { //<-- Generates a folder libs
-      guest: { //<-- Generates a folder guest
+    libs: {
+      //<-- Generates a folder libs
+      guest: {
+        //<-- Generates a folder guest
         'data-access': 'global:angular:lib:data-access', //<-- Generates a project guest-data-access by using the project type global:angular:lib:data-access
         'booking-feature': 'global:angular:lib:feature', //<-- Generates a project guest-booking-feature by using the project type global:angular:lib:feature
         'feedback-feature': 'global:angular:lib:feature', //<-- Generates a project guest-feedback-feature by using the project type global:angular:lib:feature
       },
-      room: { //<-- Generates a folder room
+      room: {
+        //<-- Generates a folder room
         'data-access': 'global:angular:lib:data-access',
         'list-feature': 'global:angular:lib:feature',
         'request-feature': 'global:angular:lib:feature',
       },
-      shared: { //<-- Generates a folder shared
-        ui: { //<-- Generates a project shared-ui by using the project type global:angular:lib:ui:storybook and extra options
+      shared: {
+        //<-- Generates a folder shared
+        ui: {
+          //<-- Generates a project shared-ui by using the project type global:angular:lib:ui:storybook and extra options
           projectType: 'global:angular:lib:ui:storybook',
           options: {
             '@nx/storybook:configuration': { project: 'shared-ui' },
@@ -160,14 +171,15 @@ npx create-huge-nx@latest [name] [options]
 
 #### Options
 
-| Option                 | Type    | Description                                                                                                                                                                   |
-|------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--name`               | string  | Name of the workspace                                                                                                                                                         |             |
+| Option                | Type    | Description                                                                                                                         |
+| --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- | --- |
+| `--name`              | string  | Name of the workspace                                                                                                               |     |
 | `--hugeNxConventions` | string  | - Name of one of the conventions file in the [examples](##Examples) section<br> - A distant file like `./my-huge-nx.conventions.ts` |
-| `--nxVersion`          | number  | Nx version to use in the new workspace (default: `latest`)                                                                                                                    |
-| `--interactive`        | boolean | When false disables interactive input prompts for options (default: `true`)                                                                                                   |
+| `--nxVersion`         | number  | Nx version to use in the new workspace (default: `latest`)                                                                          |
+| `--interactive`       | boolean | When false disables interactive input prompts for options (default: `true`)                                                         |
 
-### @huge-nx/conventions:project-type 
+### @huge-nx/conventions:project-type
+
 `Generator` used to generate a New Project by using the defined ProjectType from your HugeNx's conventions
 
 #### Usage
@@ -178,13 +190,11 @@ nx g @huge-nx/conventions:project-type [name] --directory [path-of-new-project] 
 
 #### Options
 
-| Option          | Type   | Description                                                                      |
-|-----------------|--------|----------------------------------------------------------------------------------|
-| `--name`        | string | Name of the project                                                              |             |
-| `--directory`   | string | The directory of the new project                                                 |
+| Option          | Type   | Description                                          |
+| --------------- | ------ | ---------------------------------------------------- | --- |
+| `--name`        | string | Name of the project                                  |     |
+| `--directory`   | string | The directory of the new project                     |
 | `--projectType` | string | Key of the project type to generate the project with |
-
-
 
 ## Examples
 
@@ -241,9 +251,11 @@ This script will start a local registry (Verdaccio), build the libraries, publis
 ## Resources
 
 ### Article:
+
 [![Article](./doc/images/article.png)](https://jgelin.medium.com/reproducible-nx-workspace-with-hugenxs-conventions-a247c0541049)
 
 ### Documentation:
+
 - [create-nx-workspace](https://nx.dev/nx-api/nx/documents/create-nx-workspace#createnxworkspace)
 
 ## TODO
