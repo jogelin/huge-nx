@@ -249,7 +249,6 @@ This script will start a local registry (Verdaccio), build the libraries, publis
 ## TODO
 
 - [ ] When generating workspace, update `generators` in `nx.json` with defaults conventions properties
-
 - [ ] Sync `generators` in `nx.json` and `generators` from conventions file
 - [ ] Sync `workspace` structure
 - [ ] Generate a plugin architecture presets
