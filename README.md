@@ -248,23 +248,14 @@ This script will start a local registry (Verdaccio), build the libraries, publis
 
 ## TODO
 
-### [ ] Eslint Conventions Rules
+- [ ] When generating workspace, update `generators` in `nx.json` with defaults conventions properties
 
-With the help of tools like Eslint, you can read that file and create rules to enforce conventions and:
-
-- Validate that each project follows the naming conventions
-- Validate the workspace structure
-- Validate that each project is correctly related to one **ProjectType**
-- Validate the nx.json generator’s options
-
-### [ ] Project Discovering
-
-With the project inference provided by the [Nx Project Crystal](https://nx.dev/concepts/inferred-tasks), you can easily discover your Nx project based on your naming convention.
-
-You can also create one **Nx plugin** that matches the **ProjectType** naming convention and attach the **project configuration** automatically!
-
-### [ ] Migration:
-
-Related to the fact that you can **regenerate** a new workspace from scratch for a specific Nx version, you can now easily generate a workspace with the **latest Nx** and **compare it with your workspace**.
-
-https://github.com/jogelin/huge-nx/assets/954509/614c9b4e-0c37-4d2a-abbe-b3952eb91d06
+- [ ] Sync `generators` in `nx.json` and `generators` from conventions file
+- [ ] Sync `workspace` structure
+- [ ] Generate a plugin architecture presets
+- [ ] Discover projects based on naming convention
+- [ ] Validate that each project follows the naming conventions
+- [ ] Validate the workspace structure
+- [ ] Validate that each project is correctly related to one **ProjectType**
+- [ ] Validate the nx.json generator’s options
+- [ ] Generate a diff between two workspaces by selecting files to compare, structure and projects
