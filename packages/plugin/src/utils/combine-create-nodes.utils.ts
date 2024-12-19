@@ -7,7 +7,10 @@ import { combineGlobPatterns } from 'nx/src/utils/globs';
 import { readConfigCache, writeConfigToCache } from './cache-config.utils';
 import { CreateNodesInternal } from './create-nodes-internal-builder.utils';
 
-export function combineCreateNodes<T extends Record<string, unknown>>(pluginName: string, createNodesInternals: CreateNodesInternal<T>[]): CreateNodesV2<T> {
+export function combineCreateNodes<T extends Record<string, string | number | boolean>>(
+  pluginName: string,
+  createNodesInternals: CreateNodesInternal<T>[]
+): CreateNodesV2<T> {
   const projectFilePatterns = createNodesInternals.map(([globPattern]) => globPattern);
 
   return [
