@@ -4,4 +4,5 @@ export const conventionExamples = [
   'huge-next-full-stack',
   'nx-preset-angular-monorepo',
   'nx-preset-react-monorepo',
+  'nx-preset-ts-monorepo',
 ];
