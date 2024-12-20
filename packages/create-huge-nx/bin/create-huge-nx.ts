@@ -75,7 +75,7 @@ async function main(parsedArgs: yargs.Arguments<Arguments>) {
   )}`;
 
   output.log({
-    title: `Creating your Huge Nx workspace with Nx ${parsedArgs.nxVersion} and preset @huge-nx/conventions@${hugeNxVersion}`,
+    title: `Creating your Huge Nx workspace with Nx ${parsedArgs.nxVersion} and preset @huge-nx/conventions@${hugeNxVersion} at ${process.cwd()}`,
     bodyLines: [createNxWorkspaceCmd],
   });
 
