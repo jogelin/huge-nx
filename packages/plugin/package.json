@@ -9,8 +9,8 @@
   "dependencies": {
     "tslib": "^2.3.0",
     "minimatch": "^9.0.4",
-    "@nx/devkit": "20.2.2",
-    "nx": "20.2.2"
+    "@nx/devkit": "20.4.0",
+    "nx": "20.4.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",
