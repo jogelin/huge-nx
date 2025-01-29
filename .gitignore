@@ -44,3 +44,5 @@ migrations.json
 .env
 
 vite.config.*.timestamp*
+
+vitest.config.*.timestamp*
