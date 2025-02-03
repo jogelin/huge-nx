@@ -1,3 +1,26 @@
+## 0.9.0 (2025-02-03)
+
+### 🚀 Features
+
+- **e2e:** atomized e2e ([09248be](https://github.com/jogelin/huge-nx/commit/09248be))
+- **examples:** new ts preset ([e6433c3](https://github.com/jogelin/huge-nx/commit/e6433c3))
+
+### 🩹 Fixes
+
+- **examples:** fix ci ([5110daa](https://github.com/jogelin/huge-nx/commit/5110daa))
+- **examples:** increase e2e timeout ([ad55bd7](https://github.com/jogelin/huge-nx/commit/ad55bd7))
+- **format:** fix readme format ([7bd777b](https://github.com/jogelin/huge-nx/commit/7bd777b))
+- **huge-nx-plugin:** fix bad typing ([335e4dd](https://github.com/jogelin/huge-nx/commit/335e4dd))
+- **lint:** fix nx upgrade deps ([92c461c](https://github.com/jogelin/huge-nx/commit/92c461c))
+- **lint:** fix nx lint conventions ([ed5698b](https://github.com/jogelin/huge-nx/commit/ed5698b))
+- **nx:** run migration ([b874f65](https://github.com/jogelin/huge-nx/commit/b874f65))
+- **pnpm:** pnpm not sync ([f510c24](https://github.com/jogelin/huge-nx/commit/f510c24))
+- **utils:** types on plugin utilities ([efd610c](https://github.com/jogelin/huge-nx/commit/efd610c))
+
+### ❤️ Thank You
+
+- Jonathan Gelin
+
 ## 0.8.0 (2024-12-17)
 
 ### 🚀 Features
