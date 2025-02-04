@@ -1,3 +1,13 @@
+## 0.9.1 (2025-02-04)
+
+### 🩹 Fixes
+
+- **lint:** fix lint ([c5ec33a](https://github.com/jogelin/huge-nx/commit/c5ec33a))
+
+### ❤️ Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.9.0 (2025-02-03)
 
 ### 🚀 Features
