@@ -14,9 +14,6 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "sync": {
-    "disabledTaskSyncGenerators": ["@nx/js:typescript-sync"]
-  },
   "nxCloudId": "66067fd96d89b748e00155ce",
   "targetDefaults": {
     "@nx/js:tsc": {

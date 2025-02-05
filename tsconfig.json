@@ -2,15 +2,5 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": [
-    {
-      "path": "./packages/conventions"
-    },
-    {
-      "path": "./packages/devkit"
-    },
-    {
-      "path": "./packages/plugin"
-    }
-  ]
+  "references": []
 }
