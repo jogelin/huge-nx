@@ -1,6 +1,6 @@
 # Huge<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-[![CI](https://github.com/jogelin/huge-nx/actions/workflows/ci.yml/badge.svg)](https://github.com/jogelin/huge-nx/actions/workflows/ci.yml)
+# [![CI](https://github.com/jogelin/huge-nx/actions/workflows/ci.yml/badge.svg)](https://github.com/jogelin/huge-nx/actions/workflows/ci.yml)
 
 **HugeNx** is a toolkit designed to dynamically generate and manage [Nx workspaces](https://nx.dev/) by adhering to established workspace conventions.
 
