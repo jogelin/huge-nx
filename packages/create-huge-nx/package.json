@@ -7,7 +7,7 @@
     "url": "https://github.com/jogelin/huge-nx"
   },
   "dependencies": {
-    "create-nx-workspace": "20.1.3",
+    "create-nx-workspace": "20.4.0",
     "tslib": "^2.3.0",
     "enquirer": "^2.4.1",
     "yargs": "^17.7.2",
