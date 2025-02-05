@@ -132,9 +132,6 @@ function getInlineArgv(argv: yargs.Arguments<Arguments>): string {
     'nxCloud',
     'interactive',
     'workspaces',
-    // 'skipGit',
-    // 'commit',
-    // 'cliName',
   ];
 
   const filteredArgv = Object.keys(argv).reduce(
