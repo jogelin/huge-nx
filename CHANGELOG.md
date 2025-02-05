@@ -1,3 +1,14 @@
+## 0.10.2 (2025-02-05)
+
+### 🩹 Fixes
+
+- **create-huge-nx:** clean ([e57109e](https://github.com/jogelin/huge-nx/commit/e57109e))
+- **readme:** hide fail build ([120a494](https://github.com/jogelin/huge-nx/commit/120a494))
+
+### ❤️ Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.10.1 (2025-02-05)
 
 ### 🩹 Fixes
