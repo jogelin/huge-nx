@@ -1,3 +1,13 @@
+## 0.9.2 (2025-02-05)
+
+### 🩹 Fixes
+
+- **pkg:** fix version create-nx-workspace ([376774d](https://github.com/jogelin/huge-nx/commit/376774d))
+
+### ❤️ Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.9.1 (2025-02-04)
 
 ### 🩹 Fixes
