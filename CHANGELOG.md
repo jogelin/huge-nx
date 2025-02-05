@@ -1,3 +1,13 @@
+## 0.10.1 (2025-02-05)
+
+### 🩹 Fixes
+
+- **create-huge-nx:** do not filter --workspaces option ([1375d97](https://github.com/jogelin/huge-nx/commit/1375d97))
+
+### ❤️ Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.10.0 (2025-02-05)
 
 ### 🚀 Features
