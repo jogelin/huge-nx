@@ -1,3 +1,13 @@
+## 0.10.0 (2025-02-05)
+
+### 🚀 Features
+
+- **create-huge-nx:** add --workspaces option ([f4e12bb](https://github.com/jogelin/huge-nx/commit/f4e12bb))
+
+### ❤️ Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.9.2 (2025-02-05)
 
 ### 🩹 Fixes
