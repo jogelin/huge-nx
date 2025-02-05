@@ -131,6 +131,7 @@ function getInlineArgv(argv: yargs.Arguments<Arguments>): string {
     'defaultBase',
     'nxCloud',
     'interactive',
+    'workspaces',
     // 'skipGit',
     // 'commit',
     // 'cliName',
