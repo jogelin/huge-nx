@@ -14,6 +14,7 @@ import { conventionExamples } from './convention-examples';
 interface Arguments extends CreateWorkspaceOptions {
   hugeNxConventions: string;
   nxVersion: string;
+  workspaces?: boolean;
 }
 
 export const commandsObject: yargs.Argv<Arguments> = yargs
@@ -40,6 +41,11 @@ export const commandsObject: yargs.Argv<Arguments> = yargs
           describe: chalk.dim`Nx version to use in the new workspace (default: latest)`,
           default: 'latest',
           type: 'string',
+        })
+        .option('workspaces', {
+          describe: chalk.dim`Use package manager workspaces.`,
+          type: 'boolean',
+          default: false,
         })
         .option('interactive', {
           describe: 'When false disables interactive input prompts for options.',
