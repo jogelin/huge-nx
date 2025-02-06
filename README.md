@@ -181,7 +181,7 @@ npx create-huge-nx@latest [name] [options]
 #### Options
 
 | Option                | Type    | Description                                                                                                                         |
-|-----------------------| ------- |-------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `--name`              | string  | Name of the workspace                                                                                                               |
 | `--hugeNxConventions` | string  | - Name of one of the conventions file in the [examples](##Examples) section<br> - A distant file like `./my-huge-nx.conventions.ts` |
 | `--nxVersion`         | number  | Nx version to use in the new workspace (default: `latest`)                                                                          |
