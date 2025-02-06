@@ -208,18 +208,18 @@ nx g @huge-nx/conventions:project-type [name] --directory [path-of-new-project] 
 
 ## Examples
 
-
-
 ### Nx Presets Replacement
 
 - **[nx-preset-angular-monorepo](https://github.com/jogelin/huge-nx/blob/main/examples/nx-preset-angular-monorepo.conventions.ts)**
 - **[nx-preset-react-monorepo](https://github.com/jogelin/huge-nx/blob/main/examples/nx-preset-react-monorepo.conventions.ts)**
+- **[nx-preset-ts-monorepo](https://github.com/jogelin/huge-nx/blob/main/examples/nx-preset-ts-monorepo.conventions.ts)**
 
 ### Advanced
 
 - **[huge-angular-full-stack](https://github.com/jogelin/huge-nx/blob/main/examples/huge-angular-full-stack.conventions.ts)**
 - **[huge-angular-mf](https://github.com/jogelin/huge-nx/blob/main/examples/huge-angular-mf.conventions.ts)**
 - **[huge-next-full-stack](https://github.com/jogelin/huge-nx/blob/main/examples/huge-next-full-stack.conventions.ts)**
+- **[huge-next-full-stack-ts-solution](https://github.com/jogelin/huge-nx/blob/main/examples/huge-next-full-stack-ts-solution.conventions.ts)**
 
 ## Project Type Concept
 
