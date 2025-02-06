@@ -1,3 +1,15 @@
+## 0.11.0 (2025-02-06)
+
+### 🚀 Features
+
+- **examples:** add new ts nextjs solution ([7f0d449](https://github.com/jogelin/huge-nx/commit/7f0d449))
+- **examples:** allow name with slash for pattern check ([c2bf7a8](https://github.com/jogelin/huge-nx/commit/c2bf7a8))
+- **examples:** add workspaces support ([4f69932](https://github.com/jogelin/huge-nx/commit/4f69932))
+
+### ❤️ Thank You
+
+- Jonathan Gelin @jogelin
+
 ## 0.10.2 (2025-02-05)
 
 ### 🩹 Fixes
