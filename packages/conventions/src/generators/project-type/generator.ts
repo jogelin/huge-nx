@@ -54,7 +54,7 @@ export async function projectTypeGeneratorInternal(tree: Tree, options: ProjectT
   }
 
   const projectTypeGenerators = hugeNxConventions.projectTypes[projectType].generators;
-  const projectTypeNamePattern = hugeNxConventions.projectTypes[projectType].projectPattern;
+  const projectTypeNamePattern = `**/${hugeNxConventions.projectTypes[projectType].projectPattern}`;
 
   if (!minimatch(name, projectTypeNamePattern)) {
     output.error({
