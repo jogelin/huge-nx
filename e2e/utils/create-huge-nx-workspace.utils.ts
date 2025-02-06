@@ -11,9 +11,9 @@ import { isVerbose } from '@huge-nx/devkit';
 export function createHugeNxWorkspace(
   wsName: string,
   hugeNxConventions: string,
-  { nxVersion, defaultBase, packageManager }: { nxVersion?: string; defaultBase?: string; packageManager?: string } = {}
+  { nxVersion, defaultBase, packageManager, workspaces }: { nxVersion?: string; defaultBase?: string; packageManager?: string; workspaces?: boolean } = {}
 ) {
-  let command = `npx --yes create-huge-nx@e2e ${wsName} --hugeNxConventions=${hugeNxConventions} --nxCloud=skip --no-interactive`;
+  let command = `npx --yes create-huge-nx@${process.env.PUBLISHED_VERSION} ${wsName} --hugeNxConventions=${hugeNxConventions} --nxCloud=skip --no-interactive`;
 
   if (nxVersion) {
     command += ` --nxVersion=${nxVersion}`;
@@ -23,6 +23,9 @@ export function createHugeNxWorkspace(
   }
   if (packageManager) {
     command += ` --packageManager=${packageManager}`;
+  }
+  if (workspaces) {
+    command += ` --workspaces=${workspaces}`;
   }
 
   if (!exists(tmpE2eRoot)) {

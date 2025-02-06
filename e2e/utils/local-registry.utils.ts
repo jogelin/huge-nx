@@ -19,10 +19,13 @@ export async function startLocalRegistryAndRelease() {
     localRegistryTarget,
     storage,
     verbose: false,
+    clearStorage: true,
   });
 
+  process.env.PUBLISHED_VERSION = `0.0.0-e2e.${Date.now()}`;
+
   await releaseVersion({
-    specifier: '0.0.0-e2e',
+    specifier: process.env.PUBLISHED_VERSION,
     stageChanges: false,
     gitCommit: false,
     gitTag: false,
