@@ -10,6 +10,15 @@
 
 ```bash
 $ npx create-huge-nx my-monorepo-name
+
+? Choose one of these existing conventions OR specify a distant file by using --hugeNxConventions=./my-huge-nx.conventions.ts …
+❯ huge-angular-full-stack
+  huge-angular-mf
+  huge-next-full-stack
+  huge-next-full-stack-ts-solution
+  nx-preset-angular-monorepo
+  nx-preset-react-monorepo
+  nx-preset-ts-monorepo
 ```
 
 **Or provide your custom conventions:**
@@ -172,11 +181,12 @@ npx create-huge-nx@latest [name] [options]
 #### Options
 
 | Option                | Type    | Description                                                                                                                         |
-| --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- | --- |
-| `--name`              | string  | Name of the workspace                                                                                                               |     |
+|-----------------------| ------- |-------------------------------------------------------------------------------------------------------------------------------------|
+| `--name`              | string  | Name of the workspace                                                                                                               |
 | `--hugeNxConventions` | string  | - Name of one of the conventions file in the [examples](##Examples) section<br> - A distant file like `./my-huge-nx.conventions.ts` |
 | `--nxVersion`         | number  | Nx version to use in the new workspace (default: `latest`)                                                                          |
 | `--interactive`       | boolean | When false disables interactive input prompts for options (default: `true`)                                                         |
+| `--workspaces`        | boolean | Enable the usage of Package Manager Workspaces and Typescript Reference usage (default: `false`)                                    |
 
 ### @huge-nx/conventions:project-type
 
@@ -191,17 +201,18 @@ nx g @huge-nx/conventions:project-type [name] --directory [path-of-new-project] 
 #### Options
 
 | Option          | Type   | Description                                          |
-| --------------- | ------ | ---------------------------------------------------- | --- |
-| `--name`        | string | Name of the project                                  |     |
+| --------------- | ------ | ---------------------------------------------------- |
+| `--name`        | string | Name of the project                                  |
 | `--directory`   | string | The directory of the new project                     |
 | `--projectType` | string | Key of the project type to generate the project with |
 
 ## Examples
 
+
+
 ### Nx Presets Replacement
 
 - **[nx-preset-angular-monorepo](https://github.com/jogelin/huge-nx/blob/main/examples/nx-preset-angular-monorepo.conventions.ts)**
-
 - **[nx-preset-react-monorepo](https://github.com/jogelin/huge-nx/blob/main/examples/nx-preset-react-monorepo.conventions.ts)**
 
 ### Advanced
