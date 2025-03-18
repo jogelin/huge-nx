@@ -1,3 +1,4 @@
+import { STDIO_OUTPUT } from '@huge-nx/devkit';
 import { startLocalRegistry } from '@nx/js/plugins/jest/local-registry';
 import { releasePublish, releaseVersion } from 'nx/release';
 import { workspaceRoot } from 'nx/src/utils/workspace-root';
@@ -7,7 +8,7 @@ export async function startLocalRegistryAndRelease() {
   process.chdir(workspaceRoot);
 
   try {
-    execSync('pkill -f verdaccio', { stdio: 'inherit' });
+    execSync('pkill -f verdaccio', { stdio: STDIO_OUTPUT });
   } catch (e) {
     console.info('No Verdaccio process to kill');
   }

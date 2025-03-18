@@ -4,8 +4,7 @@ import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-con
 import { HugeNxWorkspace, instanceOfHugeNxNodeWithExtraOptions } from '../../types/huge-nx-conventions';
 import { join, resolve } from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
-import { hugeNxVersion, isVerbose } from '@huge-nx/devkit';
-import { output } from 'create-nx-workspace/src/utils/output';
+import { hugeNxVersion, isVerbose, output } from '@huge-nx/devkit';
 import { projectTypeGeneratorInternal } from '../project-type/generator';
 
 async function generateWorkspaceNodes(nxWorkspace: HugeNxWorkspace, tree: Tree, directory?: string): Promise<void> {
