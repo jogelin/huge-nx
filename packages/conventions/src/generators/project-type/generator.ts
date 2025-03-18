@@ -3,13 +3,7 @@ import { ProjectTypeGeneratorSchema } from './schema';
 import { GeneratorOptions, OptionsByGenerator } from '../../types/huge-nx-conventions';
 import * as process from 'node:process';
 import { installNxPlugin } from '../../utils/nx-plugins.util';
-import {
-  getPmc,
-  objectToInlineArgs,
-  STDIO_OUTPUT,
-  output,
-  workspaceNxVersion
-} from '@huge-nx/devkit';
+import { getPmc, objectToInlineArgs, output, STDIO_OUTPUT, workspaceNxVersion } from '@huge-nx/devkit';
 import { execSync } from 'node:child_process';
 import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions.util';
 import { join } from 'node:path';
@@ -33,8 +27,8 @@ async function runGenerator(generator: string, options: GeneratorOptions) {
   execSync(generatorCmd, {
     stdio: STDIO_OUTPUT,
     env: {
-      ...process.env
-    }
+      ...process.env,
+    },
   });
 
   const loadConventionsEnd = performance.mark(`runGenerator:end:${generator}`);
