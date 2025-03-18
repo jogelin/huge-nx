@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.5.2",
-    "nx": "20.4.0"
+    "nx": "20.4.0",
+    "@nx/devkit": "20.6.1",
+    "create-nx-workspace": "20.4.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",
