@@ -1,13 +1,11 @@
 import { execSync } from 'child_process';
-import { output } from 'create-nx-workspace/src/utils/output';
 import { isCI } from 'ci-info';
 import { dirSync } from 'tmp';
 import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import { join } from 'node:path';
 import { exists } from '@nx/plugin/testing';
 import { mkdirSync } from 'node:fs';
-import { isVerbose } from '@huge-nx/devkit';
-
+import { isVerbose, output } from '@huge-nx/devkit';
 export function createHugeNxWorkspace(
   wsName: string,
   hugeNxConventions: string,

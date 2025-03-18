@@ -8,7 +8,7 @@ import { withAllPrompts, withGitOptions, withNxCloud, withOptions, withPackageMa
 import { existsSync } from 'node:fs';
 import * as chalk from 'chalk';
 import { execSync } from 'node:child_process';
-import { hugeNxVersion, objectToInlineArgs } from '@huge-nx/devkit';
+import { hugeNxVersion, objectToInlineArgs, STDIO_OUTPUT } from '@huge-nx/devkit';
 import { conventionExamples } from './convention-examples';
 
 interface Arguments extends CreateWorkspaceOptions {
@@ -85,7 +85,13 @@ async function main(parsedArgs: yargs.Arguments<Arguments>) {
     bodyLines: [createNxWorkspaceCmd],
   });
 
-  execSync(createNxWorkspaceCmd, { stdio: 'inherit', env: { ...process.env, NX_DAEMON: 'false' } });
+  execSync(createNxWorkspaceCmd, {
+    stdio: STDIO_OUTPUT,
+    env: {
+      ...process.env,
+      NX_DAEMON: 'false'
+    }
+  });
 
   output.log({
     title: `Successfully applied preset: ${parsedArgs['preset']}`,

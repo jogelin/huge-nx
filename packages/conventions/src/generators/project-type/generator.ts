@@ -1,10 +1,15 @@
 import { formatFiles, Tree } from '@nx/devkit';
 import { ProjectTypeGeneratorSchema } from './schema';
 import { GeneratorOptions, OptionsByGenerator } from '../../types/huge-nx-conventions';
-import { output } from 'create-nx-workspace/src/utils/output';
 import * as process from 'node:process';
 import { installNxPlugin } from '../../utils/nx-plugins.util';
-import { getPmc, objectToInlineArgs, workspaceNxVersion } from '@huge-nx/devkit';
+import {
+  getPmc,
+  objectToInlineArgs,
+  STDIO_OUTPUT,
+  output,
+  workspaceNxVersion
+} from '@huge-nx/devkit';
 import { execSync } from 'node:child_process';
 import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-conventions.util';
 import { join } from 'node:path';
@@ -25,7 +30,12 @@ async function runGenerator(generator: string, options: GeneratorOptions) {
     title: `Apply generator ${generator} on project ${options['name']}`,
     bodyLines: [generatorCmd],
   });
-  execSync(generatorCmd, { stdio: 'inherit', env: { ...process.env } });
+  execSync(generatorCmd, {
+    stdio: STDIO_OUTPUT,
+    env: {
+      ...process.env
+    }
+  });
 
   const loadConventionsEnd = performance.mark(`runGenerator:end:${generator}`);
 

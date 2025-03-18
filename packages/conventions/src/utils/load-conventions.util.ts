@@ -2,7 +2,7 @@ import * as ts from 'typescript';
 
 import { readFileSync } from 'node:fs';
 import { HugeNxConventions } from '../types/huge-nx-conventions';
-import { output } from 'create-nx-workspace/src/utils/output';
+import { output } from '@huge-nx/devkit';
 import { performance } from 'perf_hooks';
 
 export const hugeNxConventionsFileName = 'huge-nx.conventions.ts';
