@@ -89,8 +89,8 @@ async function main(parsedArgs: yargs.Arguments<Arguments>) {
     stdio: STDIO_OUTPUT,
     env: {
       ...process.env,
-      NX_DAEMON: 'false'
-    }
+      NX_DAEMON: 'false',
+    },
   });
 
   output.log({
