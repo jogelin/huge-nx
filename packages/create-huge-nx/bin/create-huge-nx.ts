@@ -2,13 +2,13 @@ import * as enquirer from 'enquirer';
 import * as yargs from 'yargs';
 
 import type { CreateWorkspaceOptions } from 'create-nx-workspace';
-import { CLIErrorMessageConfig, output } from 'create-nx-workspace/src/utils/output';
+import { CLIErrorMessageConfig } from 'create-nx-workspace/src/utils/output';
 import { determineDefaultBase, determineNxCloud, determinePackageManager } from 'create-nx-workspace/src/internal-utils/prompts';
 import { withAllPrompts, withGitOptions, withNxCloud, withOptions, withPackageManager } from 'create-nx-workspace/src/internal-utils/yargs-options';
 import { existsSync } from 'node:fs';
 import * as chalk from 'chalk';
 import { execSync } from 'node:child_process';
-import { hugeNxVersion, objectToInlineArgs, STDIO_OUTPUT } from '@huge-nx/devkit';
+import { hugeNxVersion, objectToInlineArgs, output, STDIO_OUTPUT } from '@huge-nx/devkit';
 import { conventionExamples } from './convention-examples';
 
 interface Arguments extends CreateWorkspaceOptions {

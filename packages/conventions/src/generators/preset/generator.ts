@@ -4,7 +4,7 @@ import { hugeNxConventionsFileName, loadConventions } from '../../utils/load-con
 import { HugeNxWorkspace, instanceOfHugeNxNodeWithExtraOptions } from '../../types/huge-nx-conventions';
 import { join, resolve } from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
-import { hugeNxVersion, isVerbose, output } from '@huge-nx/devkit';
+import { hugeNxVersion, output } from '@huge-nx/devkit';
 import { projectTypeGeneratorInternal } from '../project-type/generator';
 
 async function generateWorkspaceNodes(nxWorkspace: HugeNxWorkspace, tree: Tree, directory?: string): Promise<void> {
@@ -22,11 +22,9 @@ async function generateWorkspaceNodes(nxWorkspace: HugeNxWorkspace, tree: Tree, 
 
     const name = dir.split('/').slice(1).join('-');
 
-    if (isVerbose()) {
-      output.log({
-        title: `Generating ${name} in ${dir} with options ${JSON.stringify(nodeOptionsByGenerator)}`,
-      });
-    }
+    output.log({
+      title: `Generating ${name} in ${dir} with options ${JSON.stringify(nodeOptionsByGenerator)}`,
+    });
 
     await projectTypeGeneratorInternal(tree, { name, directory: dir, projectType, extraOptionsByGenerator: nodeOptionsByGenerator });
   }

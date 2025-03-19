@@ -5,7 +5,8 @@ import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import { join } from 'node:path';
 import { exists } from '@nx/plugin/testing';
 import { mkdirSync } from 'node:fs';
-import { isVerbose, output } from '@huge-nx/devkit';
+import { IS_VERBOSE_REQUESTED, output } from '@huge-nx/devkit';
+
 export function createHugeNxWorkspace(
   wsName: string,
   hugeNxConventions: string,
@@ -55,7 +56,7 @@ export function runCommand(command: string, cwd: string, stdio: 'inherit' | 'pip
   console.log(`Running command: ${command}`);
   let result = '';
   try {
-    result = execSync(`${command}${isVerbose() ? ' --verbose' : ''}`, {
+    result = execSync(`${command}${IS_VERBOSE_REQUESTED ? ' --verbose' : ''}`, {
       cwd,
       stdio,
       env: {
@@ -65,13 +66,11 @@ export function runCommand(command: string, cwd: string, stdio: 'inherit' | 'pip
       encoding: 'utf-8',
     });
 
-    if (isVerbose()) {
-      output.log({
-        title: `Command: ${command}`,
-        bodyLines: [result || 'No output'],
-        color: 'green',
-      });
-    }
+    output.log({
+      title: `Command: ${command}`,
+      bodyLines: [result || 'No output'],
+      color: 'green',
+    });
 
     return result;
   } catch (e) {

@@ -20,10 +20,12 @@ async function runGenerator(generator: string, options: GeneratorOptions) {
   installNxPlugin(generator.split(':')[0]);
 
   const generatorCmd = `${getPmc().exec} nx g ${generator} ${objectToInlineArgs(options)}`;
+
   output.log({
     title: `Apply generator ${generator} on project ${options['name']}`,
     bodyLines: [generatorCmd],
   });
+
   execSync(generatorCmd, {
     stdio: STDIO_OUTPUT,
     env: {
