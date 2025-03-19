@@ -144,11 +144,8 @@ importers:
         specifier: '*'
         version: 0.8.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11))
       '@nx/devkit':
-        specifier: 20.4.0
-        version: 20.4.0(nx@20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))
-      create-nx-workspace:
-        specifier: 20.4.0
-        version: 20.4.0
+        specifier: 20.6.1
+        version: 20.6.1(nx@20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))
       minimatch:
         specifier: ^9.0.4
         version: 9.0.5
@@ -185,9 +182,15 @@ importers:
 
   packages/devkit:
     dependencies:
+      '@nx/devkit':
+        specifier: 20.6.1
+        version: 20.6.1(nx@20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))
       '@swc/helpers':
         specifier: ~0.5.2
         version: 0.5.11
+      create-nx-workspace:
+        specifier: 20.4.0
+        version: 20.4.0
       nx:
         specifier: 20.4.0
         version: 20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11))
@@ -195,8 +198,8 @@ importers:
   packages/plugin:
     dependencies:
       '@nx/devkit':
-        specifier: 20.4.0
-        version: 20.4.0(nx@20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))
+        specifier: 20.6.1
+        version: 20.6.1(nx@20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))
       minimatch:
         specifier: ^9.0.4
         version: 9.0.5
@@ -1208,11 +1211,6 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
-
-  '@nx/devkit@20.4.0':
-    resolution: {integrity: sha512-qog9oGbuz7DDoXH5k+19tTI3WtaR1p9G5NobiDPfcWmsr1BTK2WH2V2/vVYFAfAcM/DEFgK3ITC5L3PSaJvMmw==}
-    peerDependencies:
-      nx: '>= 19 <= 21'
 
   '@nx/devkit@20.6.1':
     resolution: {integrity: sha512-7+Hhl+uzI5H0I+27ZkUZT5DYsIOV1DYIxXkJNa8forAcuv5oFM1L9ObZWIIKSopOiX6/VHL2TD0v6U2IBP0NcA==}
@@ -6445,7 +6443,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@nx/devkit@20.4.0(nx@20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))':
+  '@nx/devkit@20.6.1(nx@20.4.0(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))':
     dependencies:
       ejs: 3.1.9
       enquirer: 2.3.6
@@ -7986,7 +7984,7 @@ snapshots:
 
   create-nx-workspace@20.4.0:
     dependencies:
-      axios: 1.7.8
+      axios: 1.8.3
       chalk: 4.1.2
       enquirer: 2.3.6
       flat: 5.0.2
