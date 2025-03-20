@@ -75,8 +75,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       create-nx-workspace:
-        specifier: 20.4.0
-        version: 20.4.0
+        specifier: 20.6.2
+        version: 20.6.2
       enquirer:
         specifier: ^2.4.1
         version: 2.4.1
@@ -170,6 +170,9 @@ importers:
       enquirer:
         specifier: ^2.4.1
         version: 2.4.1
+      nx:
+        specifier: 20.6.2
+        version: 20.6.2(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11))
       tslib:
         specifier: ^2.3.0
         version: 2.6.2
@@ -186,8 +189,11 @@ importers:
         specifier: ~0.5.2
         version: 0.5.11
       create-nx-workspace:
-        specifier: 20.4.0
-        version: 20.4.0
+        specifier: 20.6.2
+        version: 20.6.2
+      nx:
+        specifier: 20.6.2
+        version: 20.6.2(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11))
 
   packages/plugin:
     dependencies:
@@ -197,6 +203,9 @@ importers:
       minimatch:
         specifier: ^9.0.4
         version: 9.0.5
+      nx:
+        specifier: 20.6.2
+        version: 20.6.2(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11))
       tslib:
         specifier: ^2.3.0
         version: 2.6.2
@@ -2429,6 +2438,10 @@ packages:
 
   create-nx-workspace@20.4.0:
     resolution: {integrity: sha512-GyEalprFFGg+3r2zTkE20q5cBVvELXsbx6W01Ptan7jf3BVzOUjapYpPby7WFav42EjcxGejp3zT0ztryC8Lig==}
+    hasBin: true
+
+  create-nx-workspace@20.6.2:
+    resolution: {integrity: sha512-EKAwILjCkYFUDc/eatTH6SHj9V2ElKr2BURDjmS1zpe4N2dOFtMSuDkBHqE7rQ7lGrIwAJcXY/ITedFjlxmG0w==}
     hasBin: true
 
   create-require@1.1.1:
@@ -7860,6 +7873,19 @@ snapshots:
       - ts-node
 
   create-nx-workspace@20.4.0:
+    dependencies:
+      axios: 1.8.3
+      chalk: 4.1.2
+      enquirer: 2.3.6
+      flat: 5.0.2
+      ora: 5.3.0
+      tmp: 0.2.3
+      tslib: 2.6.2
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - debug
+
+  create-nx-workspace@20.6.2:
     dependencies:
       axios: 1.8.3
       chalk: 4.1.2
