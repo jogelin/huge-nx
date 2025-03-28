@@ -12,8 +12,7 @@
     "enquirer": "^2.4.1",
     "yargs": "^17.7.2",
     "chalk": "^4.1.2",
-    "@huge-nx/devkit": "*",
-    "nx": "20.6.2"
+    "@huge-nx/devkit": "*"
   },
   "type": "commonjs",
   "main": "./bin/index.js",

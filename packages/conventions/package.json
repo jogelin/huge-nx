@@ -10,7 +10,7 @@
     "@huge-nx/devkit": "*",
     "tslib": "^2.3.0",
     "minimatch": "^9.0.4",
-    "@nx/devkit": "20.6.2",
+    "@nx/devkit": "20.6.4",
     "typescript": "5.7.3"
   },
   "type": "commonjs",
