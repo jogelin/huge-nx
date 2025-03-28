@@ -2,7 +2,7 @@ import * as enquirer from 'enquirer';
 import * as yargs from 'yargs';
 
 import type { CreateWorkspaceOptions } from 'create-nx-workspace';
-import { CLIErrorMessageConfig } from 'create-nx-workspace/src/utils/output';
+import type { CLIErrorMessageConfig } from 'create-nx-workspace/src/utils/output';
 import { determineDefaultBase, determineNxCloud, determinePackageManager } from 'create-nx-workspace/src/internal-utils/prompts';
 import { withAllPrompts, withGitOptions, withNxCloud, withOptions, withPackageManager } from 'create-nx-workspace/src/internal-utils/yargs-options';
 import { existsSync } from 'node:fs';
