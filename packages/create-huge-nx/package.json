@@ -12,7 +12,7 @@
     "yargs": "^17.7.2",
     "chalk": "^4.1.2",
     "@huge-nx/devkit": "*",
-  "create-nx-workspace": "20.6.2"
+    "create-nx-workspace": "20.6.2"
   },
   "type": "commonjs",
   "main": "./bin/index.js",
